@@ -44,7 +44,7 @@ public class TestMob : MonoBehaviour
         }
 
         //count
-        if (collision.gameObject == countzone)
+        if (!counted && collision.gameObject == countzone)
         {
             manager.AddCount();
             counted = true;
