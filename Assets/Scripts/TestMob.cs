@@ -10,7 +10,7 @@ public class TestMob : MonoBehaviour
     bool counted;
 
     [SerializeField]
-    public float movespeed;
+    public float movespeed, initialSpeed;
 
     [System.NonSerialized]
     public GameObject[] killzone;
@@ -29,6 +29,7 @@ public class TestMob : MonoBehaviour
     {
         obj = GetComponent<Sprite>();
         counted = false;
+        initialSpeed = movespeed;
     }
 
     // Update is called once per frame
