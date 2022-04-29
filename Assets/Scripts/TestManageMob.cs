@@ -55,7 +55,7 @@ public class TestManageMob : MonoBehaviour
                     mob.GetComponent<TestMob>().manager = this;
                     mob.GetComponent<TestMob>().countzone = countzone;
                     mob.GetComponent<TestMob>().Player = Player;
-                    mob.GetComponent<TestMob>().movespeed = Random.Range(0.5f, 3);
+                    mob.GetComponent<TestMob>().movespeed = Random.Range(6, 9);
                     NumberOfMobsInPlay++;
                 }
                 timer = Random.Range(spawntime - 3, spawntime + 3);
