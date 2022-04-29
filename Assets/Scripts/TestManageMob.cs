@@ -4,6 +4,27 @@ using UnityEngine;
 
 public class TestManageMob : MonoBehaviour
 {
+//---------------------------------------------
+// PUBLIC [S.NS], NOT in unity inspector         
+//---------------------------------------------
+//---------------------------------------------
+// PRIVATE, NOT in unity inspector
+//---------------------------------------------
+    float timer;
+
+    int randomIndex = 0,
+        minSizeOfMobPrefabArray = 0,
+        maxSizeOfMobPrefabArray = 0;
+
+//---------------------------------------------
+// PUBLIC, SHOW in unity inspector
+//---------------------------------------------
+    public int NumberOfMobsInPlay = 0;    
+    public List<GameObject> mobArray = new List<GameObject>();
+
+//---------------------------------------------
+// PRIVATE [SF], SHOW in unity inspector
+//---------------------------------------------
     [SerializeField]
     TMPro.TMP_Text counter;
     int count;
@@ -15,7 +36,7 @@ public class TestManageMob : MonoBehaviour
     GameObject Player;
 
     [SerializeField]
-    GameObject mobprefab;
+    GameObject[] mobprefab;
 
     [SerializeField]
     GameObject[] spawnzone;
@@ -25,21 +46,21 @@ public class TestManageMob : MonoBehaviour
 
     [SerializeField]
     GameObject countzone;
-
-    [SerializeField]
-    public int NumberOfMobsInPlay = 0;
-    float timer;
-
-    public List<GameObject> mobArray = new List<GameObject>();
-
-    // Start is called before the first frame update
+    
+//---------------------------------------------
+// FUNCTIONS
+//---------------------------------------------      
     void Start()
     {
         timer = spawntime;
         count = 0;
+
+        for (int i = 0; i < mobprefab.Length; ++i)
+        {
+            ++maxSizeOfMobPrefabArray;
+        }        
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Player.GetComponent<Player>().GameTimePassed > 0)
@@ -48,11 +69,14 @@ public class TestManageMob : MonoBehaviour
 
             if (timer <= 0)
             {
+
+                randomIndex = Random.Range(minSizeOfMobPrefabArray, maxSizeOfMobPrefabArray);
+
                 //Spawn at spawn zone
                 int temp = Random.Range(1, spawnzone.Length - 1);
                 for (int i = 0; i < temp; i++)
                 {
-                    GameObject mob = Instantiate(mobprefab, spawnzone[Random.Range(0, spawnzone.Length - 1)].transform.position, Quaternion.identity);
+                    GameObject mob = Instantiate(mobprefab[randomIndex], spawnzone[Random.Range(0, spawnzone.Length - 1)].transform.position, Quaternion.identity);
                     mob.GetComponent<TestMob>().killzone = killzone;
                     mob.GetComponent<TestMob>().manager = this;
                     mob.GetComponent<TestMob>().countzone = countzone;

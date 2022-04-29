@@ -3063,17 +3063,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8077f1cb851f27f4aa57f23f17ed40fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NumberOfMobsInPlay: 0
+  mobArray: []
   counter: {fileID: 1950827018}
   spawntime: 1.2
   Player: {fileID: 1051094988}
-  mobprefab: {fileID: 2830174198021001867, guid: 2cf3372af7bb6484987d9b42f748d663, type: 3}
+  mobprefab:
+  - {fileID: 2830174198021001867, guid: e8b89b86a05b60a4e9b8445e7baf3bd5, type: 3}
+  - {fileID: 2830174198021001867, guid: 3b4d84c454398c7449e4c3dfb2cf4fea, type: 3}
+  - {fileID: 2830174198021001867, guid: 65493802fe789ab4aa24165eaa0d094d, type: 3}
+  - {fileID: 2830174198021001867, guid: 6470db4f139d08d4b8febf128f4cc539, type: 3}
+  - {fileID: 2830174198021001867, guid: 93950b184261de840a58a13ae4f3b154, type: 3}
+  - {fileID: 2830174198021001867, guid: d4db2031cae0e2a44a2b21998c9a8e4b, type: 3}
   spawnzone:
   - {fileID: 1224021513}
   killzone:
   - {fileID: 570197129}
   countzone: {fileID: 703868554}
-  NumberOfMobsInPlay: 0
-  mobArray: []
 --- !u!1 &2123007335
 GameObject:
   m_ObjectHideFlags: 0
