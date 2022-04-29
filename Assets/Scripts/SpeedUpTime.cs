@@ -37,9 +37,9 @@ public class SpeedUpTime : MonoBehaviour
         {
             for (int i = 0; i < GetComponent<TestManageMob>().mobArray.Count; ++i)
             {
-                if (GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().movespeed < highestSpeed)
+                if (GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().moveSpeed < highestSpeed)
                 {
-                    GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().movespeed += speedAddition * Time.fixedDeltaTime;
+                    GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().moveSpeed += speedAddition * Time.fixedDeltaTime;
                 }
             }
         }
@@ -47,9 +47,9 @@ public class SpeedUpTime : MonoBehaviour
         {
             for (int g = 0; g < GetComponent<TestManageMob>().mobArray.Count; ++g)
             {
-                if (GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().movespeed > GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().initialSpeed)
+                if (GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().moveSpeed > GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().initialSpeed)
                 {
-                    GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().movespeed += -speedAddition * Time.fixedDeltaTime;
+                    GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().moveSpeed += -speedAddition * Time.fixedDeltaTime;
                 }
             }
         }

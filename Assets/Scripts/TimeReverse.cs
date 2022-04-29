@@ -33,9 +33,9 @@ public class TimeReverse : MonoBehaviour
         {
             for (int i = 0; i < GetComponent<TestManageMob>().mobArray.Count; ++i)
             {
-                if (GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().movespeed > -GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().initialSpeed)
+                if (GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().moveSpeed > -GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().initialSpeed)
                 {
-                    GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().movespeed += -reverseSpeed * Time.fixedDeltaTime;
+                    GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().moveSpeed += -reverseSpeed * Time.fixedDeltaTime;
                 }
             }
         }
@@ -43,9 +43,9 @@ public class TimeReverse : MonoBehaviour
         {
             for (int g = 0; g < GetComponent<TestManageMob>().mobArray.Count; ++g)
             {
-                if (GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().movespeed < GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().initialSpeed)
+                if (GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().moveSpeed < GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().initialSpeed)
                 {
-                    GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().movespeed += reverseSpeed * Time.fixedDeltaTime;
+                    GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().moveSpeed += reverseSpeed * Time.fixedDeltaTime;
                 }
             }
         }

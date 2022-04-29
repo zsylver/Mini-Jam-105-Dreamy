@@ -57,7 +57,7 @@ public class TestManageMob : MonoBehaviour
                     mob.GetComponent<TestMob>().manager = this;
                     mob.GetComponent<TestMob>().countzone = countzone;
                     mob.GetComponent<TestMob>().Player = Player;
-                    mob.GetComponent<TestMob>().movespeed  = mob.GetComponent<TestMob>().initialSpeed = Random.Range(6, 9);
+                    //mob.GetComponent<TestMob>().movespeed  = mob.GetComponent<TestMob>().initialSpeed = Random.Range(6, 9);
                     mobArray.Add(mob);
                     NumberOfMobsInPlay++;
                 }
