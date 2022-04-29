@@ -13,7 +13,7 @@ public class TestMob : MonoBehaviour
     float movespeed;
 
     [System.NonSerialized]
-    public GameObject killzone;
+    public GameObject[] killzone;
 
     //[System.NonSerialized]
     public GameObject countzone;
@@ -37,8 +37,11 @@ public class TestMob : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Kill on collide w killzone
-        if (collision.gameObject == killzone)
-            Destroy(gameObject);
+        for(int i = 0; i < killzone.Length; i++)
+        {
+            if (collision.gameObject == killzone[i])
+                Destroy(gameObject);
+        }
 
         //count
         if (collision.gameObject == countzone)
