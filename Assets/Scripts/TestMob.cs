@@ -22,9 +22,9 @@ public class TestMob : MonoBehaviour
     [System.NonSerialized]
     public float initialSpeed;
 
-    //---------------------------------------------
-    // PRIVATE, NOT in unity inspector
-    //---------------------------------------------
+//---------------------------------------------
+// PRIVATE, NOT in unity inspector
+//---------------------------------------------
     Sprite obj;
     float baseSpeed = 6;
 
@@ -86,19 +86,19 @@ public class TestMob : MonoBehaviour
         obj = GetComponent<Sprite>();
         counted = false;
 
-        moveSpeed = Random.Range(baseSpeed, maxMoveSpeed + 1);
+        moveSpeed = Random.Range(baseSpeed, maxMoveSpeed);
         initialSpeed = moveSpeed;
 
-        jumpHeight = Random.Range(baseJumpHeight, maxJumpHeight + 1);
-        jumpDelay = Random.Range(baseJumpDelay, maxJumpDelay + 1);
-        jumpDuration = Random.Range(baseJumpDuration, maxJumpDuration + 1);
+        jumpHeight = Random.Range(baseJumpHeight, maxJumpHeight);
+        jumpDelay = Random.Range(baseJumpDelay, maxJumpDelay);
+        jumpDuration = Random.Range(baseJumpDuration, maxJumpDuration);
 
         giveUpChanceChecker = Random.Range(minChance, maxChance);
         if (giveUpChanceChecker <= baseGiveUpChance)
         {
             isNoobSheep = true;
-            baseThinkingDelay = Random.Range(baseThinkingDelay, maxThinkingDelay + 1);
-            baseThinkingDuration = Random.Range(baseThinkingDuration, maxThinkingDuration + 1);
+            baseThinkingDelay = Random.Range(baseThinkingDelay, maxThinkingDelay);
+            baseThinkingDuration = Random.Range(baseThinkingDuration, maxThinkingDuration);
         }               
     }
 

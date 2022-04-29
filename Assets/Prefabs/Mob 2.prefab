@@ -107,9 +107,9 @@ MonoBehaviour:
   maxThinkingDelay: 3
   maxThinkingDuration: 3
   maxMoveSpeed: 15
-  maxJumpHeight: 25
+  maxJumpHeight: 15
   maxJumpDelay: 3
-  maxJumpDuration: 2
+  maxJumpDuration: 1.2
 --- !u!50 &2812420586039239006
 Rigidbody2D:
   serializedVersion: 4

@@ -496,11 +496,11 @@ MonoBehaviour:
   m_AssetsPPU: 6
   m_RefResolutionX: 320
   m_RefResolutionY: 180
-  m_UpscaleRT: 1
+  m_UpscaleRT: 0
   m_PixelSnapping: 1
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
+  m_CropFrameX: 1
+  m_CropFrameY: 1
+  m_StretchFill: 1
 --- !u!1 &570197129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,7 +1986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counter: {fileID: 1950827018}
-  spawntime: 5
+  spawntime: 1.2
   Player: {fileID: 1051094988}
   mobprefab: {fileID: 2830174198021001867, guid: 2cf3372af7bb6484987d9b42f748d663, type: 3}
   spawnzone:
@@ -1995,6 +1995,7 @@ MonoBehaviour:
   - {fileID: 570197129}
   countzone: {fileID: 703868554}
   NumberOfMobsInPlay: 0
+  mobArray: []
 --- !u!1 &2123007335
 GameObject:
   m_ObjectHideFlags: 0
