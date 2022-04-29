@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2830174198021001864}
   - component: {fileID: 2812420586039239006}
   - component: {fileID: 8868311063441617935}
+  - component: {fileID: 2753936844659204903}
   m_Layer: 6
   m_Name: Mob 2
   m_TagString: Untagged
@@ -55,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: deba350923801834993308a8d299f1c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   counted: 0
   movespeed: 6
+  initialSpeed: 0
   countzone: {fileID: 0}
 --- !u!50 &2812420586039239006
 Rigidbody2D:
@@ -139,3 +141,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.033965815, y: -1.8663673}
   m_Size: {x: 5.441666, y: 4.169143}
   m_Direction: 1
+--- !u!114 &2753936844659204903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2830174198021001867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderTypes: 0
+  normalStrength: 5
+  normalSmoothing: 1
+  computingNormal: 0

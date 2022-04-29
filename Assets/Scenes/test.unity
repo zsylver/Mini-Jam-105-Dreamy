@@ -492,6 +492,10 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420037}
+  - component: {fileID: 519420036}
+  - component: {fileID: 519420035}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -585,6 +589,77 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f326b1b5a0220744487bebe792ccb1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 589c1cbd9bd36af4cbb12d1f8ae9bc94, type: 3}
+  HoleSize: 0.6
+  HoleSmooth: 0.3
+  Color1: 0.2
+  Color2: 0.9
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd11c0fdad9e7f42a10a68cc5381bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 4765e42ea04507f4f90e34c5fc42b2e0, type: 3}
+  Twist: 1
+  Speed: 1
+  Color: {r: 0.16, g: 0.57, b: 0.19, a: 1}
+  PosX: 0.5
+  PosY: 0.5
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0971779da499d914c9a205948f8ee602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 14156ee2cd4dade4a8da9c29407b9203, type: 3}
+  Fade: 1
+--- !u!114 &519420037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c9fc5684e5f83469d9d8793bc07ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: cbaf02ee3972f024b955358476dbaa47, type: 3}
+  _Visualize: 0
+  _FixDistance: 1
+  _Distance: 0.5
+  _Size: 0.1
+  DistortionLevel: 1.2
+  DistortionSize: 1.4
+  LightIntensity: 0.08
+  AutoAnimatedNear: 0
+  AutoAnimatedNearSpeed: 0.5
 --- !u!1 &570197129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2154,7 @@ MonoBehaviour:
   - {fileID: 570197129}
   countzone: {fileID: 703868554}
   NumberOfMobsInPlay: 0
+  mobArray: []
 --- !u!1 &2123007335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,6 +2165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2123007337}
   - component: {fileID: 2123007336}
+  - component: {fileID: 2123007338}
   m_Layer: 0
   m_Name: BG
   m_TagString: Untagged
@@ -2163,6 +2240,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2123007338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123007335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f781a87b9b71ff2499a64018f6a1c875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 75b8e42e69b04ac4a8ac146a83d9deaf, type: 3}
+  Threshold: 1
+  DotSize: 1
 --- !u!1 &2139083438
 GameObject:
   m_ObjectHideFlags: 0
