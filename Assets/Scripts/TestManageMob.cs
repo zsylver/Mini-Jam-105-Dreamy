@@ -26,6 +26,8 @@ public class TestManageMob : MonoBehaviour
     [SerializeField]
     GameObject countzone;
 
+    [SerializeField]
+    public int NumberOfMobsInPlay = 0;
     float timer;
 
     // Start is called before the first frame update
@@ -45,15 +47,19 @@ public class TestManageMob : MonoBehaviour
             if (timer <= 0)
             {
                 //Spawn at spawn zone
-                GameObject mob = Instantiate(mobprefab, spawnzone[Random.Range(0, spawnzone.Length - 1)].transform.position, Quaternion.identity);
-                mob.GetComponent<TestMob>().killzone = killzone;
-                mob.GetComponent<TestMob>().manager = this;
-                mob.GetComponent<TestMob>().countzone = countzone;
-                mob.GetComponent<TestMob>().Player = Player;
+                int temp = Random.Range(1, spawnzone.Length - 1);
+                for (int i = 0; i < temp; i++)
+                {
+                    GameObject mob = Instantiate(mobprefab, spawnzone[Random.Range(0, spawnzone.Length - 1)].transform.position, Quaternion.identity);
+                    mob.GetComponent<TestMob>().killzone = killzone;
+                    mob.GetComponent<TestMob>().manager = this;
+                    mob.GetComponent<TestMob>().countzone = countzone;
+                    mob.GetComponent<TestMob>().Player = Player;
+                    NumberOfMobsInPlay++;
+                }
                 timer = Random.Range(spawntime - 3, spawntime + 3);
             }
         }
-
         counter.text = count.ToString();
     }
 

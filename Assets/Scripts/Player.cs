@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     float GameDurationMax = 60;
 
+    [SerializeField]
+    public GameObject manager;
+
     public float GameTimePassed;
 
     void Start()
@@ -53,7 +56,7 @@ public class Player : MonoBehaviour
             }
             GameTimePassed -= Time.deltaTime;
         }
-        else
+        else if(manager.GetComponent<TestManageMob>().NumberOfMobsInPlay == 0)
         {
             endtext.alpha = 255;
         }

@@ -34,10 +34,7 @@ public class TestMob : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.GetComponent<Player>().GameTimePassed > 0)
-        {
-            transform.Translate(movespeed * Time.deltaTime, 0, 0);
-        }
+        transform.Translate(movespeed * Time.deltaTime, 0, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,7 +43,10 @@ public class TestMob : MonoBehaviour
         for(int i = 0; i < killzone.Length; i++)
         {
             if (collision.gameObject == killzone[i])
+            {
+                manager.NumberOfMobsInPlay--;
                 Destroy(gameObject);
+            }
         }
 
         //count
