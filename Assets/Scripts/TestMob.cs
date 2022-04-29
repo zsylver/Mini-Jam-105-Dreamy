@@ -7,6 +7,9 @@ public class TestMob : MonoBehaviour
     Sprite obj;
 
     [SerializeField]
+    bool counted;
+
+    [SerializeField]
     float movespeed;
 
     [System.NonSerialized]
@@ -22,6 +25,7 @@ public class TestMob : MonoBehaviour
     void Start()
     {
         obj = GetComponent<Sprite>();
+        counted = false;
     }
 
     // Update is called once per frame
@@ -38,6 +42,9 @@ public class TestMob : MonoBehaviour
 
         //count
         if (collision.gameObject == countzone)
+        {
             manager.AddCount();
+            counted = true;
+        }
     }
 }
