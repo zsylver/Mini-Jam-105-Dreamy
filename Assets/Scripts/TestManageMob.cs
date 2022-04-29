@@ -12,6 +12,9 @@ public class TestManageMob : MonoBehaviour
     float spawntime = 5;
 
     [SerializeField]
+    GameObject Player;
+
+    [SerializeField]
     GameObject mobprefab;
 
     [SerializeField]
@@ -35,16 +38,20 @@ public class TestManageMob : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
-
-        if(timer <= 0)
+        if (Player.GetComponent<Player>().GameTimePassed > 0)
         {
-            //Spawn at spawn zone
-            GameObject mob = Instantiate(mobprefab, spawnzone[Random.Range(0, spawnzone.Length-1)].transform.position, Quaternion.identity);
-            mob.GetComponent<TestMob>().killzone = killzone;
-            mob.GetComponent<TestMob>().manager = this;
-            mob.GetComponent<TestMob>().countzone = countzone;
-            timer = Random.Range(spawntime - 3, spawntime + 3);
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                //Spawn at spawn zone
+                GameObject mob = Instantiate(mobprefab, spawnzone[Random.Range(0, spawnzone.Length - 1)].transform.position, Quaternion.identity);
+                mob.GetComponent<TestMob>().killzone = killzone;
+                mob.GetComponent<TestMob>().manager = this;
+                mob.GetComponent<TestMob>().countzone = countzone;
+                mob.GetComponent<TestMob>().Player = Player;
+                timer = Random.Range(spawntime - 3, spawntime + 3);
+            }
         }
 
         counter.text = count.ToString();
@@ -53,5 +60,12 @@ public class TestManageMob : MonoBehaviour
     public void AddCount()
     {
         count++;
+    }
+    public void DecCount()
+    {
+        if(count > 0)
+        {
+            count--;
+        }
     }
 }

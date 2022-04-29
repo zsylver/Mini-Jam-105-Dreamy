@@ -15,6 +15,9 @@ public class TestMob : MonoBehaviour
     [System.NonSerialized]
     public GameObject[] killzone;
 
+    [System.NonSerialized]
+    public GameObject Player;
+
     //[System.NonSerialized]
     public GameObject countzone;
 
@@ -31,7 +34,10 @@ public class TestMob : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(movespeed * Time.deltaTime, 0, 0);
+        if (Player.GetComponent<Player>().GameTimePassed > 0)
+        {
+            transform.Translate(movespeed * Time.deltaTime, 0, 0);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,6 +54,11 @@ public class TestMob : MonoBehaviour
         {
             manager.AddCount();
             counted = true;
+        }
+        else if (counted && collision.gameObject == countzone)
+        {
+            manager.DecCount();
+            counted = false;
         }
     }
 }
