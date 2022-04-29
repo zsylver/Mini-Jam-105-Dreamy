@@ -10,7 +10,7 @@ public class TestMob : MonoBehaviour
     bool counted;
 
     [SerializeField]
-    float movespeed;
+    public float movespeed;
 
     [System.NonSerialized]
     public GameObject[] killzone;
