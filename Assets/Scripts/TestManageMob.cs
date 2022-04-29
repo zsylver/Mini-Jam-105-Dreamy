@@ -30,6 +30,8 @@ public class TestManageMob : MonoBehaviour
     public int NumberOfMobsInPlay = 0;
     float timer;
 
+    public List<GameObject> mobArray = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +57,8 @@ public class TestManageMob : MonoBehaviour
                     mob.GetComponent<TestMob>().manager = this;
                     mob.GetComponent<TestMob>().countzone = countzone;
                     mob.GetComponent<TestMob>().Player = Player;
-                    mob.GetComponent<TestMob>().movespeed = Random.Range(6, 9);
+                    mob.GetComponent<TestMob>().movespeed  = mob.GetComponent<TestMob>().initialSpeed = Random.Range(6, 9);
+                    mobArray.Add(mob);
                     NumberOfMobsInPlay++;
                 }
                 timer = Random.Range(spawntime - 3, spawntime + 3);
