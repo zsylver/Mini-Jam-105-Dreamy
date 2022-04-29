@@ -32,9 +32,9 @@ public class TestMob : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(movespeed * Time.deltaTime, 0, 0);
+        transform.Translate(movespeed * Time.fixedDeltaTime, 0, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
