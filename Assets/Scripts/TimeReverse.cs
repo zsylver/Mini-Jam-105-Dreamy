@@ -21,16 +21,23 @@ public class TimeReverse : MonoBehaviour
     //---------------------------------------------
 
     [SerializeField]
-    bool reverseTime;
+    public bool reverseTime;
 
     [SerializeField]
     float reverseSpeed;
+
+    private float timerReverseTime;
+    private float durationReverseTime;
+
+    private bool bufferReverseTime;
+
     //---------------------------------------------
     // FUNCTIONS
     //---------------------------------------------  
     void Start()
     {
-        
+        timerReverseTime = 0.0f;
+        bufferReverseTime = true;
     }
 
     // Update is called once per frame
@@ -47,6 +54,14 @@ public class TimeReverse : MonoBehaviour
 
         if (reverseTime)
         {
+            timerReverseTime += Time.fixedDeltaTime;
+
+            if (bufferReverseTime)
+            {
+                durationReverseTime = Random.Range(3, 7);
+                bufferReverseTime = false;
+            }
+
             for (int i = 0; i < GetComponent<TestManageMob>().mobArray.Count; ++i)
             {
                 if (GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().moveSpeed > -GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().initialSpeed)
@@ -64,6 +79,13 @@ public class TimeReverse : MonoBehaviour
                     GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().moveSpeed += reverseSpeed * Time.fixedDeltaTime;
                 }
             }
+        }
+
+        if (timerReverseTime > durationReverseTime)
+        {
+            reverseTime = false;
+            timerReverseTime = 0.0f;
+            bufferReverseTime = true;
         }
     }
 }

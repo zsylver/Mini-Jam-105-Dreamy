@@ -21,13 +21,18 @@ public class SpeedUpTime : MonoBehaviour
     // PRIVATE [SF], SHOW in unity inspector
     //---------------------------------------------
     [SerializeField]
-    bool speedUpTime;
+    public bool speedUpTime;
 
     [SerializeField]
     float speedAddition;
 
     [SerializeField]
     float highestSpeed;
+
+    private float timerSpeedTime;
+    private float durationSpeedTime;
+
+    private bool bufferSpeedTime;
 
     //public List<GameObject> mobArray = new List<GameObject>();
 
@@ -37,7 +42,8 @@ public class SpeedUpTime : MonoBehaviour
     //---------------------------------------------  
     void Start()
     {
-
+        timerSpeedTime = 0.0f;
+        bufferSpeedTime = true;
     }
 
     // Update is called once per frame
@@ -54,6 +60,14 @@ public class SpeedUpTime : MonoBehaviour
 
         if (speedUpTime)
         {
+            timerSpeedTime += Time.fixedDeltaTime;
+
+            if (bufferSpeedTime)
+            {
+                durationSpeedTime = Random.Range(3, 7);
+                bufferSpeedTime = false;
+            }
+
             for (int i = 0; i < GetComponent<TestManageMob>().mobArray.Count; ++i)
             {
                 if (GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().moveSpeed < highestSpeed)
@@ -71,6 +85,13 @@ public class SpeedUpTime : MonoBehaviour
                     GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().moveSpeed += -speedAddition * Time.fixedDeltaTime;
                 }
             }
+        }
+
+        if (timerSpeedTime > durationSpeedTime)
+        {
+            speedUpTime = false;
+            timerSpeedTime = 0.0f;
+            bufferSpeedTime = true;
         }
     }
 }

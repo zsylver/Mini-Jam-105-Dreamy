@@ -21,7 +21,7 @@ public class SlowTime : MonoBehaviour
     // PRIVATE [SF], SHOW in unity inspector
     //---------------------------------------------
     [SerializeField]
-    bool slowTime;
+    public bool slowTime;
 
     [SerializeField]
     float speedReduction;
@@ -29,7 +29,10 @@ public class SlowTime : MonoBehaviour
     [SerializeField]
     float lowestSpeed;
 
-    //public List<GameObject> mobArray = new List<GameObject>();
+    private float timerSlowTime;
+    private float durationSlowTime;
+
+    private bool bufferSlowTime;
 
     // Start is called before the first frame update
     //---------------------------------------------
@@ -37,7 +40,8 @@ public class SlowTime : MonoBehaviour
     //---------------------------------------------  
     void Start()
     {
-
+        timerSlowTime = 0.0f;
+        bufferSlowTime = true;
     }
 
     // Update is called once per frame
@@ -54,6 +58,14 @@ public class SlowTime : MonoBehaviour
 
         if (slowTime)
         {
+            timerSlowTime += Time.fixedDeltaTime;
+
+            if (bufferSlowTime)
+            {
+                durationSlowTime = Random.Range(3, 7);
+                bufferSlowTime = false;
+            }
+
             for (int i = 0; i < GetComponent<TestManageMob>().mobArray.Count; ++i)
             {
                 if (GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().moveSpeed > lowestSpeed)
@@ -71,6 +83,13 @@ public class SlowTime : MonoBehaviour
                     GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().moveSpeed += speedReduction * Time.fixedDeltaTime;
                 }
             }
+        }
+
+        if (timerSlowTime > durationSlowTime)
+        {
+            slowTime = false;
+            timerSlowTime = 0.0f;
+            bufferSlowTime = true;
         }
     }
 }

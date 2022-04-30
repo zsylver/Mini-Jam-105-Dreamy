@@ -1948,6 +1948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1958181665}
   - component: {fileID: 1958181666}
+  - component: {fileID: 1958181670}
   - component: {fileID: 1958181669}
   - component: {fileID: 1958181668}
   - component: {fileID: 1958181667}
@@ -1988,17 +1989,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8077f1cb851f27f4aa57f23f17ed40fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NumberOfMobsInPlay: 0
+  mobArray: []
   counter: {fileID: 1950827018}
-  spawntime: 5
+  baseSpawnZoneCheckerChance: 25
+  spawntime: 1.2
   Player: {fileID: 1051094988}
-  mobprefab: {fileID: 2830174198021001867, guid: 2cf3372af7bb6484987d9b42f748d663, type: 3}
+  mobprefab:
+  - {fileID: 2830174198021001867, guid: e8b89b86a05b60a4e9b8445e7baf3bd5, type: 3}
+  - {fileID: 2830174198021001867, guid: 3b4d84c454398c7449e4c3dfb2cf4fea, type: 3}
+  - {fileID: 2830174198021001867, guid: 65493802fe789ab4aa24165eaa0d094d, type: 3}
+  - {fileID: 2830174198021001867, guid: 6470db4f139d08d4b8febf128f4cc539, type: 3}
+  - {fileID: 2830174198021001867, guid: 93950b184261de840a58a13ae4f3b154, type: 3}
+  - {fileID: 2830174198021001867, guid: d4db2031cae0e2a44a2b21998c9a8e4b, type: 3}
+  flyingMobPrefab:
+  - {fileID: 2830174198021001867, guid: d228fa3a9ae427f499f4a5534b1db4af, type: 3}
+  - {fileID: 2830174198021001867, guid: 9aa1973024452884ea0ab7bfc5aacbc2, type: 3}
+  - {fileID: 2830174198021001867, guid: 911793f16ed7bd749a803c2515218fe2, type: 3}
+  - {fileID: 2830174198021001867, guid: 56ead7982e1d0cd4d9ce9372c3496bd2, type: 3}
+  - {fileID: 2830174198021001867, guid: 05222781c32465f4484d8783a5d0a103, type: 3}
   spawnzone:
   - {fileID: 1224021513}
   killzone:
   - {fileID: 570197129}
   countzone: {fileID: 703868554}
-  NumberOfMobsInPlay: 0
-  mobArray: []
 --- !u!114 &1958181667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2043,6 +2057,18 @@ MonoBehaviour:
   slowTime: 0
   speedReduction: 12
   lowestSpeed: 0.5
+--- !u!114 &1958181670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958181664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8303d63859e4248baccf71243e2abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2123007335
 GameObject:
   m_ObjectHideFlags: 0
