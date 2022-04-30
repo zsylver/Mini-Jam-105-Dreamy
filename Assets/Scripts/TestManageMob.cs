@@ -43,6 +43,9 @@ public class TestManageMob : MonoBehaviour
     float spawntime = 5;
 
     [SerializeField]
+    float revealtime = 1;
+
+    [SerializeField]
     GameObject Player;
 
     [SerializeField]
@@ -140,6 +143,7 @@ public class TestManageMob : MonoBehaviour
                 {
                     mobArray.Clear();
                     ended = true;
+                    timer = revealtime;
                 }
                 countzone.GetComponent<Collider2D>().isTrigger = false;
                 for (int i = 0; i < endMob.Count; i++)
@@ -157,11 +161,17 @@ public class TestManageMob : MonoBehaviour
                         mob.GetComponent<TestMob>().manager = this;
                         mob.GetComponent<TestMob>().end = true;
                     }
-                    mobArray.Add(mob);
+                    if (mob.CompareTag("Sheep"))
+                    {
+                        mobArray.Add(mob);
+                    }
                     endMob.RemoveAt(i);
                 }
-
-
+                timer -= Time.deltaTime;
+                if (timer <= 0)
+                {
+                    timer = revealtime;
+                }
             }
             counter.text = count.ToString();
         }
