@@ -25,6 +25,7 @@ public class ButtonObject : MonoBehaviour
     void OnMouseOver()
     {
         Debug.Log("BUTTON hover");
+        
         if (Input.GetMouseButtonDown(0) && !triggered)
         {
             Debug.Log("BUTTON PRESSED");
@@ -37,6 +38,7 @@ public class ButtonObject : MonoBehaviour
             triggered = false;
             this.GetComponentInParent<SpriteRenderer>().sprite = ogSprite;
         }
+        
     }
     void Update()
     {
