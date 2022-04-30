@@ -248,7 +248,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 242cca294f7b7e146a283a8e48c12b88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3077,6 +3077,7 @@ MonoBehaviour:
   NumberOfMobsInPlay: 0
   mobArray: []
   counter: {fileID: 1950827018}
+  baseSpawnZoneCheckerChance: 25
   spawntime: 1.2
   Player: {fileID: 1051094988}
   mobprefab:
@@ -3156,7 +3157,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 0d794319491acb9449505b5c36da788c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
