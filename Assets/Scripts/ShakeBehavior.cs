@@ -6,15 +6,18 @@ public class ShakeBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
     // Transform of the GameObject you want to shake
-    private Transform transform;
+    new private Transform transform;
 
     // Desired duration of the shake effect
+    [SerializeField]
     private float shakeDuration = 0f;
 
     // A measure of magnitude for the shake. Tweak based on your preference
-    private float shakeMagnitude = 0.7f;
+    [SerializeField]
+    private float shakeMagnitude = 0.3f;
 
     // A measure of how quickly the shake effect should evaporate
+    [SerializeField]
     private float dampingSpeed = 1.0f;
 
     // The initial position of the GameObject

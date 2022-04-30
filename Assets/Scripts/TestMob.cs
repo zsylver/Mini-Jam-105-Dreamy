@@ -22,9 +22,14 @@ public class TestMob : MonoBehaviour
     [System.NonSerialized]
     public float initialSpeed;
 
-//---------------------------------------------
-// PRIVATE, NOT in unity inspector
-//---------------------------------------------
+    [System.NonSerialized]
+    public float fallMultiplier = 2.5f;
+
+    [System.NonSerialized]
+    public float lowJumpMultiplier = 2.0f;
+    //---------------------------------------------
+    // PRIVATE, NOT in unity inspector
+    //---------------------------------------------
     Sprite obj;
     float baseSpeed = 6;
 
@@ -51,7 +56,13 @@ public class TestMob : MonoBehaviour
 
     float baseThinkingDelay = 1;
     float baseThinkingDuration = 1;
-        
+
+    float floorY = -5.916605f;
+
+    Rigidbody2D rb;
+    Vector3 tempPos;
+
+
 //---------------------------------------------
 // PUBLIC, SHOW in unity inspector
 //---------------------------------------------
@@ -85,9 +96,15 @@ public class TestMob : MonoBehaviour
     [SerializeField]
     float maxJumpDuration;
 
-//---------------------------------------------
-// FUNCTIONS
-//---------------------------------------------
+    //---------------------------------------------
+    // FUNCTIONS
+    //---------------------------------------------
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();    
+    }
+
+
     void Start()
     {
         obj = GetComponent<Sprite>();
@@ -172,7 +189,18 @@ public class TestMob : MonoBehaviour
                     transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
                 }
                 else
-                    transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
+                {
+                    if (this.gameObject.transform.position.y > floorY)
+                    {
+                        transform.Translate(moveSpeed * Time.fixedDeltaTime, -jumpHeight * Time.fixedDeltaTime, 0);
+                        
+                        // fixing Y coord
+                        if (this.gameObject.transform.position.y <= floorY) {
+                            tempPos.Set(this.gameObject.transform.position.x, floorY, this.gameObject.transform.position.z);
+                            this.gameObject.transform.SetPositionAndRotation(tempPos, Quaternion.identity);
+                        }
+                    }
+                }
             }
         }
     }
