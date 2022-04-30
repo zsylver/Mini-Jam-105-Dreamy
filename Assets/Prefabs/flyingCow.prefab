@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8868311063441617935}
   - component: {fileID: 2753936844659204903}
   m_Layer: 6
-  m_Name: Sheep Headbanger
-  m_TagString: Untagged
+  m_Name: flyingCow
+  m_TagString: flying
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: deba350923801834993308a8d299f1c2, type: 2}
+  - {fileID: 2100000, guid: 7d784d3c8bd48b74dab29f55135fdb4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2addc164b44cbc148be14e0766e23492, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4fc755dce07a7ab4fb28c2765890b9db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,7 +125,7 @@ Rigidbody2D:
   m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.75
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

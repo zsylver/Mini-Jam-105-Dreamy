@@ -33,9 +33,16 @@ public class TestMob : MonoBehaviour
 
     float baseJumpDelay = 1;
     float jumpDelay;
+    float initialJumpDelay;
 
-    float baseJumpDuration = 1;
+    float baseJumpDuration = 0.8f;
     float jumpDuration;
+    float initialJumpDuration;
+
+    bool jumpFinish = true;
+
+    int fiftyPercentRNGNum;
+    bool fiftyPercentRNG = false;
 
     int giveUpChanceChecker = 0;
     int minChance = 0, maxChance = 100;
@@ -86,50 +93,87 @@ public class TestMob : MonoBehaviour
         obj = GetComponent<Sprite>();
         counted = false;
 
-        moveSpeed = Random.Range(baseSpeed, maxMoveSpeed);
+        moveSpeed = Random.Range(baseSpeed, maxMoveSpeed + 1);
         initialSpeed = moveSpeed;
 
-        jumpHeight = Random.Range(baseJumpHeight, maxJumpHeight);
-        jumpDelay = Random.Range(baseJumpDelay, maxJumpDelay);
-        jumpDuration = Random.Range(baseJumpDuration, maxJumpDuration);
+        jumpHeight = Random.Range(baseJumpHeight, maxJumpHeight + 1);
 
-        giveUpChanceChecker = Random.Range(minChance, maxChance);
+        jumpDelay = Random.Range(baseJumpDelay, maxJumpDelay + 1);
+        initialJumpDelay = jumpDelay;
+
+        jumpDuration = Random.Range(baseJumpDuration, maxJumpDuration + 1);
+        initialJumpDuration = jumpDuration;
+
+        fiftyPercentRNGNum = Random.Range(1, 2 + 1);
+        if (fiftyPercentRNGNum == 1)
+            fiftyPercentRNG = false;
+        else if (fiftyPercentRNGNum == 2)
+            fiftyPercentRNG = true;
+
+        giveUpChanceChecker = Random.Range(minChance, maxChance + 1);
         if (giveUpChanceChecker <= baseGiveUpChance)
         {
             isNoobSheep = true;
-            baseThinkingDelay = Random.Range(baseThinkingDelay, maxThinkingDelay);
-            baseThinkingDuration = Random.Range(baseThinkingDuration, maxThinkingDuration);
+            baseThinkingDelay = Random.Range(baseThinkingDelay, maxThinkingDelay + 1);
+            baseThinkingDuration = Random.Range(baseThinkingDuration, maxThinkingDuration + 1);
         }               
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isNoobSheep)
+        if (this.gameObject.tag == "flying")
         {
-            if (baseThinkingDelay >= 0)
-            {
-                baseThinkingDelay -= Time.fixedDeltaTime;
-                transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
-            }
-            else if (baseThinkingDuration >= 0)
-                baseThinkingDuration -= Time.fixedDeltaTime;
-
-            else
-            {
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-                transform.Translate(-moveSpeed * Time.fixedDeltaTime, 0, 0);
-            }
+            transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
         }
         else
         {
-            if (jumpDelay >= 0)
-                jumpDelay -= Time.fixedDeltaTime;
-
-            if (jumpDelay <= 0 && jumpDuration >= 0)
-                transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
+            if (isNoobSheep)
+            {
+                if (baseThinkingDelay >= 0)
+                {
+                    baseThinkingDelay -= Time.fixedDeltaTime;
+                    transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
+                }
+                else if (baseThinkingDuration >= 0)
+                    baseThinkingDuration -= Time.fixedDeltaTime;
+                else
+                {
+                    this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                    transform.Translate(-moveSpeed * Time.fixedDeltaTime, 0, 0);
+                }
+            }
             else
-                transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
+            {
+                if (jumpDelay >= 0 && jumpFinish == true)
+                {
+                    jumpDelay -= Time.fixedDeltaTime;
+                    if (jumpDelay <= 0)
+                    {
+                        jumpFinish = false;
+                        jumpDuration = initialJumpDuration;
+                    }
+                }
+
+                if (jumpDelay <= 0 && jumpDuration >= 0 && jumpFinish == false)
+                {
+                    // if this 50% rng is false, animal constantly bounces aft jumping
+                    // else, it got delay between jumps
+                    if (fiftyPercentRNG == true)
+                    {
+                        jumpDuration -= Time.fixedDeltaTime;
+                        if (jumpDuration <= 0)
+                        {
+                            jumpFinish = true;
+                            jumpDelay = initialJumpDelay;
+                        }
+                    }
+
+                    transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
+                }
+                else
+                    transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
+            }
         }
     }
 
