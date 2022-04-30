@@ -122,7 +122,7 @@ public class TestMob : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (this.gameObject.tag == "flying")
+        if (this.gameObject.transform.Find("balloon") != null && this.gameObject.transform.Find("balloon").gameObject.transform.CompareTag("flying"))
         {
             transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
         }
@@ -190,12 +190,12 @@ public class TestMob : MonoBehaviour
         }
 
         //count
-        if (!counted && gameObject.GetComponent<SpriteRenderer>().sprite.name ==  "sheep" && collision.gameObject == countzone)
+        if (!counted && collision.gameObject == countzone && this.gameObject.CompareTag("Sheep"))
         {
             manager.AddCount();
             counted = true;
         }
-        else if (counted && gameObject.GetComponent<SpriteRenderer>().sprite.name == "sheep" && collision.gameObject == countzone)
+        else if (counted && collision.gameObject == countzone && this.gameObject.CompareTag("Sheep"))
         {
             manager.DecCount();
             counted = false;

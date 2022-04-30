@@ -22,7 +22,7 @@ public class TestManageMob : MonoBehaviour
 
     int spawnZoneChecker = 0;
     int spawnZoneMinChance = 0, spawnZoneMaxChance = 100;
-
+    int spawnNumber = 0;
 //---------------------------------------------
 // PUBLIC, SHOW in unity inspector
 //---------------------------------------------
@@ -87,37 +87,41 @@ public class TestManageMob : MonoBehaviour
 
             if (timer <= 0)
             {
-                spawnZoneChecker = Random.Range(spawnZoneMinChance, spawnZoneMaxChance + 1);
-                if (spawnZoneChecker <= baseSpawnZoneCheckerChance)
+                spawnNumber = Random.Range(1, spawnzone.Length);
+                for(int i = 0; i < spawnNumber; i++)
                 {
-                    //Spawn at spawn zone  
-                    spawnZoneIndex = Random.Range(1, spawnzone.Length);
-                }
-                else
-                    //Spawn at spawn zone  
-                    spawnZoneIndex = 0;
-                                              
-                GameObject mob;
-                if (spawnZoneIndex == 0) // floor spawnZone
-                {
-                    // choosing a random animal to spawn
-                    randomIndex = Random.Range(minSizeOfMobPrefabArray, maxSizeOfMobPrefabArray);
-                    mob = Instantiate(mobprefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
-                }
-                else // flying spawnZone         
-                {
-                    // choosing a random flying animal to spawn
-                    randomIndex = Random.Range(minSizeOfFlyingMobPrefabArray, maxSizeOfFlyingMobPrefabArray);
-                    mob = Instantiate(flyingMobPrefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
-                }
-                    
-                mob.GetComponent<TestMob>().killzone = killzone;
-                mob.GetComponent<TestMob>().manager = this;
-                mob.GetComponent<TestMob>().countzone = countzone;
-                mob.GetComponent<TestMob>().Player = Player;
-                mobArray.Add(mob);
-                NumberOfMobsInPlay++;
+                    spawnZoneChecker = Random.Range(spawnZoneMinChance, spawnZoneMaxChance + 1);
+                    if (spawnZoneChecker <= baseSpawnZoneCheckerChance)
+                    {
+                        //Spawn at spawn zone  
+                        spawnZoneIndex = Random.Range(1, spawnzone.Length);
+                    }
+                    else
+                        //Spawn at spawn zone  
+                        spawnZoneIndex = 0;
 
+                    GameObject mob;
+                    if (spawnZoneIndex == 0) // floor spawnZone
+                    {
+                        // choosing a random animal to spawn
+                        randomIndex = Random.Range(minSizeOfMobPrefabArray, maxSizeOfMobPrefabArray);
+                        mob = Instantiate(mobprefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
+                    }
+                    else // flying spawnZone         
+                    {
+                        // choosing a random flying animal to spawn
+                        randomIndex = Random.Range(minSizeOfFlyingMobPrefabArray, maxSizeOfFlyingMobPrefabArray);
+                        mob = Instantiate(flyingMobPrefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
+                    }
+
+                    mob.GetComponent<TestMob>().killzone = killzone;
+                    mob.GetComponent<TestMob>().manager = this;
+                    mob.GetComponent<TestMob>().countzone = countzone;
+                    mob.GetComponent<TestMob>().Player = Player;
+                    mobArray.Add(mob);
+                    NumberOfMobsInPlay++;
+                }
+           
                 timer = Random.Range(spawntime, spawntime + 3);
             }
         }
