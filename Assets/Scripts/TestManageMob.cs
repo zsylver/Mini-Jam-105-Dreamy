@@ -11,7 +11,7 @@ public class TestManageMob : MonoBehaviour
 // PRIVATE, NOT in unity inspector
 //---------------------------------------------
     float timer;
-
+    bool ended = false;
     int randomIndex = 0,
         minSizeOfMobPrefabArray = 0,
         maxSizeOfMobPrefabArray = 0,
@@ -136,6 +136,11 @@ public class TestManageMob : MonoBehaviour
             }
             else if (NumberOfMobsInPlay == 0)
             {
+                if (!ended)
+                {
+                    mobArray.Clear();
+                    ended = true;
+                }
                 countzone.GetComponent<Collider2D>().isTrigger = false;
                 for (int i = 0; i < endMob.Count; i++)
                 {
@@ -152,8 +157,10 @@ public class TestManageMob : MonoBehaviour
                         mob.GetComponent<TestMob>().manager = this;
                         mob.GetComponent<TestMob>().end = true;
                     }
+                    mobArray.Add(mob);
                     endMob.RemoveAt(i);
                 }
+
 
             }
             counter.text = count.ToString();
