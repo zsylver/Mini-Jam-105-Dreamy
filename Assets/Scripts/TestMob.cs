@@ -190,12 +190,12 @@ public class TestMob : MonoBehaviour
         }
 
         //count
-        if (!counted && collision.gameObject == countzone)
+        if (!counted && gameObject.GetComponent<SpriteRenderer>().sprite.name ==  "sheep" && collision.gameObject == countzone)
         {
             manager.AddCount();
             counted = true;
         }
-        else if (counted && collision.gameObject == countzone)
+        else if (counted && gameObject.GetComponent<SpriteRenderer>().sprite.name == "sheep" && collision.gameObject == countzone)
         {
             manager.DecCount();
             counted = false;
