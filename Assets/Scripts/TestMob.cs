@@ -143,65 +143,73 @@ public class TestMob : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (this.gameObject.transform.Find("balloon") != null && this.gameObject.transform.Find("balloon").gameObject.transform.CompareTag("flying"))
+        if (GameManager.Instance.isPause())
         {
-            transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
-        }
-        else
-        {
-            if (isNoobSheep)
+            this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            if (this.gameObject.transform.Find("balloon") != null && this.gameObject.transform.Find("balloon").gameObject.transform.CompareTag("flying"))
             {
-                if (baseThinkingDelay >= 0)
-                {
-                    baseThinkingDelay -= Time.fixedDeltaTime;
-                    transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
-                }
-                else if (baseThinkingDuration >= 0)
-                    baseThinkingDuration -= Time.fixedDeltaTime;
-                else
-                {
-                    this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-                    transform.Translate(-moveSpeed * Time.fixedDeltaTime, 0, 0);
-                }
+                transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
             }
             else
             {
-                if (jumpDelay >= 0 && jumpFinish == true)
+                if (isNoobSheep)
                 {
-                    jumpDelay -= Time.fixedDeltaTime;
-                    if (jumpDelay <= 0)
+                    if (baseThinkingDelay >= 0)
                     {
-                        jumpFinish = false;
-                        jumpDuration = initialJumpDuration;
+                        baseThinkingDelay -= Time.fixedDeltaTime;
+                        transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
                     }
-                }
-
-                if (jumpDelay <= 0 && (jumpDuration >= 0 || jumpFinish == false))
-                {
-                    // if this 50% rng is false, animal constantly bounces aft jumping
-                    // else, it got delay between jumps
-                    if (fiftyPercentRNG == true)
+                    else if (baseThinkingDuration >= 0)
+                        baseThinkingDuration -= Time.fixedDeltaTime;
+                    else
                     {
-                        jumpDuration -= Time.fixedDeltaTime;
-                        transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
-
-                        if (jumpDuration <= 0 && this.gameObject.transform.position.y <= floorY)
-                        {
-                            jumpFinish = true;
-                            jumpDelay = initialJumpDelay;
-                        }
+                        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                        transform.Translate(-moveSpeed * Time.fixedDeltaTime, 0, 0);
                     }
-                    else 
-                        transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
                 }
                 else
-                {                    
-                    transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);                    
+                {
+                    if (jumpDelay >= 0 && jumpFinish == true)
+                    {
+                        jumpDelay -= Time.fixedDeltaTime;
+                        if (jumpDelay <= 0)
+                        {
+                            jumpFinish = false;
+                            jumpDuration = initialJumpDuration;
+                        }
+                    }
+
+                    if (jumpDelay <= 0 && (jumpDuration >= 0 || jumpFinish == false))
+                    {
+                        // if this 50% rng is false, animal constantly bounces aft jumping
+                        // else, it got delay between jumps
+                        if (fiftyPercentRNG == true)
+                        {
+                            jumpDuration -= Time.fixedDeltaTime;
+                            transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
+
+                            if (jumpDuration <= 0 && this.gameObject.transform.position.y <= floorY)
+                            {
+                                jumpFinish = true;
+                                jumpDelay = initialJumpDelay;
+                            }
+                        }
+                        else
+                            transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
+                    }
+                    else
+                    {
+                        transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
+                    }
                 }
             }
         }
-    }
+        else
+        {
+            this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+        }
 
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!end)

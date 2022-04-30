@@ -16,6 +16,9 @@ public class TestCloud : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Translate(panspeed * Time.fixedDeltaTime, 0, 0);
+        if (GameManager.Instance.isPause())
+        {
+            transform.Translate(panspeed * Time.fixedDeltaTime, 0, 0);
+        }
     }
 }

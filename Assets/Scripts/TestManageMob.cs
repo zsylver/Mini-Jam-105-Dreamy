@@ -85,76 +85,80 @@ public class TestManageMob : MonoBehaviour
 
     void Update()
     {
-        if (Player.GetComponent<Player>().GameTimePassed > 0)
+        if (GameManager.Instance.isPause())
         {
-            timer -= Time.deltaTime;
-
-            if (timer <= 0)
+            if (Player.GetComponent<Player>().GameTimePassed > 0)
             {
-                //choosing a random amount of animal to spawn
-                spawnNumber = Random.Range(1, spawnzone.Length);
-                for(int i = 0; i < spawnNumber; i++)
+                timer -= Time.deltaTime;
+
+                if (timer <= 0)
                 {
-                    spawnZoneChecker = Random.Range(spawnZoneMinChance, spawnZoneMaxChance + 1);
-                    if (spawnZoneChecker <= baseSpawnZoneCheckerChance)
+                    //choosing a random amount of animal to spawn
+                    spawnNumber = Random.Range(1, spawnzone.Length);
+                    for (int i = 0; i < spawnNumber; i++)
                     {
-                        //Spawn at spawn zone  
-                        spawnZoneIndex = Random.Range(1, spawnzone.Length);
+                        spawnZoneChecker = Random.Range(spawnZoneMinChance, spawnZoneMaxChance + 1);
+                        if (spawnZoneChecker <= baseSpawnZoneCheckerChance)
+                        {
+                            //Spawn at spawn zone  
+                            spawnZoneIndex = Random.Range(1, spawnzone.Length);
+                        }
+                        else
+                            //Spawn at spawn zone  
+                            spawnZoneIndex = 0;
+
+                        GameObject mob;
+                        if (spawnZoneIndex == 0) // floor spawnZone
+                        {
+                            // choosing a random animal to spawn
+                            randomIndex = Random.Range(minSizeOfMobPrefabArray, maxSizeOfMobPrefabArray);
+                            mob = Instantiate(mobprefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
+                            mob.GetComponent<TestMob>().ID = randomIndex;
+                        }
+                        else // flying spawnZone         
+                        {
+                            // choosing a random flying animal to spawn
+                            randomIndex = Random.Range(minSizeOfFlyingMobPrefabArray, maxSizeOfFlyingMobPrefabArray);
+                            mob = Instantiate(flyingMobPrefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
+                            mob.GetComponent<TestMob>().ID = mobprefab.Length + randomIndex + 1;
+                        }
+
+                        mob.GetComponent<TestMob>().killzone = killzone;
+                        mob.GetComponent<TestMob>().manager = this;
+                        mob.GetComponent<TestMob>().countzone = countzone;
+                        mob.GetComponent<TestMob>().Player = Player;
+                        mobArray.Add(mob);
+                        NumberOfMobsInPlay++;
+                    }
+
+                    timer = Random.Range(spawntime, spawntime + 3);
+                }
+            }
+            else if (NumberOfMobsInPlay == 0)
+            {
+                countzone.GetComponent<Collider2D>().isTrigger = false;
+                for (int i = 0; i < endMob.Count; i++)
+                {
+                    GameObject mob;
+                    if (endMob[i] > mobprefab.Length)
+                    {
+                        mob = Instantiate(flyingMobPrefab[endMob[i] - mobprefab.Length - 1], endspawn.transform.position, Quaternion.identity);
+                        mob.GetComponent<TestMob>().manager = this;
+                        mob.GetComponent<TestMob>().end = true;
                     }
                     else
-                        //Spawn at spawn zone  
-                        spawnZoneIndex = 0;
-
-                    GameObject mob;
-                    if (spawnZoneIndex == 0) // floor spawnZone
                     {
-                        // choosing a random animal to spawn
-                        randomIndex = Random.Range(minSizeOfMobPrefabArray, maxSizeOfMobPrefabArray);
-                        mob = Instantiate(mobprefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
-                        mob.GetComponent<TestMob>().ID = randomIndex;
+                        mob = Instantiate(mobprefab[endMob[i]], endspawn.transform.position, Quaternion.identity);
+                        mob.GetComponent<TestMob>().manager = this;
+                        mob.GetComponent<TestMob>().end = true;
                     }
-                    else // flying spawnZone         
-                    {
-                        // choosing a random flying animal to spawn
-                        randomIndex = Random.Range(minSizeOfFlyingMobPrefabArray, maxSizeOfFlyingMobPrefabArray);
-                        mob = Instantiate(flyingMobPrefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
-                        mob.GetComponent<TestMob>().ID = mobprefab.Length + randomIndex + 1;
-                    }
+                    endMob.RemoveAt(i);
+                }
 
-                    mob.GetComponent<TestMob>().killzone = killzone;
-                    mob.GetComponent<TestMob>().manager = this;
-                    mob.GetComponent<TestMob>().countzone = countzone;
-                    mob.GetComponent<TestMob>().Player = Player;
-                    mobArray.Add(mob);
-                    NumberOfMobsInPlay++;
-                }
-           
-                timer = Random.Range(spawntime, spawntime + 3);
             }
+            counter.text = count.ToString();
         }
-        else if(NumberOfMobsInPlay == 0)
-        {
-            countzone.GetComponent<Collider2D>().isTrigger = false;
-            for (int i = 0; i < endMob.Count; i++)
-            {
-                GameObject mob;
-                if (endMob[i] > mobprefab.Length)
-                {
-                    mob = Instantiate(flyingMobPrefab[endMob[i] - mobprefab.Length -1], endspawn.transform.position, Quaternion.identity);
-                    mob.GetComponent<TestMob>().manager = this;
-                    mob.GetComponent<TestMob>().end = true;
-                }
-                else
-                {
-                    mob = Instantiate(mobprefab[endMob[i]], endspawn.transform.position, Quaternion.identity);
-                    mob.GetComponent<TestMob>().manager = this;
-                    mob.GetComponent<TestMob>().end = true;
-                }
-                endMob.RemoveAt(i);
-            }
-
-        }
-        counter.text = count.ToString();
+            
     }
     public void DelKillZone()
     {

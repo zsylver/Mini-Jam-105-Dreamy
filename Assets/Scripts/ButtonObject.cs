@@ -24,20 +24,25 @@ public class ButtonObject : MonoBehaviour
     // Update is called once per frame
     void OnMouseOver()
     {
-        Debug.Log("BUTTON hover");
-        
-        if (Input.GetMouseButtonDown(0) && !triggered)
+        if (GameManager.Instance.isPause())
         {
-            Debug.Log("BUTTON PRESSED");
-            triggered = true;
-            this.GetComponentInParent<SpriteRenderer>().sprite = newSprite;
-            OnClick.Invoke();
+            Debug.Log("BUTTON hover");
+
+            if (Input.GetMouseButtonDown(0) && !triggered)
+            {
+                Debug.Log("BUTTON PRESSED");
+                triggered = true;
+                this.GetComponentInParent<SpriteRenderer>().sprite = newSprite;
+                OnClick.Invoke();
+            }
+            else if (Input.GetMouseButtonUp(0) && triggered)
+            {
+                triggered = false;
+                this.GetComponentInParent<SpriteRenderer>().sprite = ogSprite;
+            }
         }
-        else if (Input.GetMouseButtonUp(0) && triggered)
-        {
-            triggered = false;
-            this.GetComponentInParent<SpriteRenderer>().sprite = ogSprite;
-        }
+
+
         
     }
     void Update()

@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     string[] scenes;
+
+    [SerializeField]
+    bool gameNotPause = true;
     void Awake()
     {
         if (instance != null)
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     private GameManager()
     {
+
     }
 
     public static GameManager Instance 
@@ -61,6 +65,18 @@ public class GameManager : MonoBehaviour
     {
     }
 
+    public void Pause()
+    {
+        gameNotPause = false;
+    }
+    public void UnPause()
+    {
+        gameNotPause = true;
+    }
+    public bool isPause()
+    {
+        return gameNotPause;
+    }
     public void ChangeState(string name)
     {
         SceneManager.LoadScene(name);

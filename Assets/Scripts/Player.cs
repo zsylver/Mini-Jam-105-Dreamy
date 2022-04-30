@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
         else if(manager.GetComponent<TestManageMob>().NumberOfMobsInPlay == 0)
         {
             manager.GetComponent<TestManageMob>().DelKillZone();
+            animator.enabled = true;
             animator.SetBool("isEnd", true);
         }
 

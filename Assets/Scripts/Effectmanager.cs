@@ -46,25 +46,29 @@ public class Effectmanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
-
-        if (timer <= 0)
+        if (GameManager.Instance.isPause())
         {
-            //spawn game time effects
-            if (Player.GetComponent<Player>().GameTimePassed > 0)
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
             {
+                //spawn game time effects
+                if (Player.GetComponent<Player>().GameTimePassed > 0)
+                {
+
+                }
+                else//spawn non game time effects
+                {
+                    spawnZoneIndex = Random.Range(0, spawnzone.Length);
+                    randomIndex = Random.Range(0, effectprefab.Length);
+                    GameObject mob;
+                    mob = Instantiate(effectprefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
+                    mob.transform.Translate(-mob.GetComponent<SpriteRenderer>().bounds.size.x / 2, 0, 0);
+                    timer = Random.Range(spawntime - 2, spawntime + 2);
+                }
 
             }
-            else//spawn non game time effects
-            {
-                spawnZoneIndex = Random.Range(0, spawnzone.Length);
-                randomIndex = Random.Range(0, effectprefab.Length);
-                GameObject mob;
-                mob = Instantiate(effectprefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
-                mob.transform.Translate(-mob.GetComponent<SpriteRenderer>().bounds.size.x / 2, 0, 0);
-                timer = Random.Range(spawntime - 2, spawntime + 2);
-            }
-
         }
+            
     }
 }
