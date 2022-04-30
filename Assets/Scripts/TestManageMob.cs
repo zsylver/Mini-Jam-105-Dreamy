@@ -170,6 +170,10 @@ public class TestManageMob : MonoBehaviour
                 timer -= Time.deltaTime;
                 if (timer <= 0)
                 {
+                    if(mobArray.Count > 0)
+                    {
+                        //mobArray[mobArray.Count].transform;
+                    }
                     timer = revealtime;
                 }
             }
