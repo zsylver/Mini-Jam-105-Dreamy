@@ -22,8 +22,9 @@ public class ButtonObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void OnMouseOver()
+    void OnMouseOver()
     {
+        Debug.Log("BUTTON hover");
         if (Input.GetMouseButtonDown(0) && !triggered)
         {
             Debug.Log("BUTTON PRESSED");
@@ -39,6 +40,5 @@ public class ButtonObject : MonoBehaviour
     }
     void Update()
     {
-
     }
 }
