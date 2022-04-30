@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class SpeedUpTime : MonoBehaviour
 {
+
+    //---------------------------------------------
+    // PUBLIC [S.NS], NOT in unity inspector         
+    //---------------------------------------------
+
+    //---------------------------------------------
+    // PRIVATE, NOT in unity inspector
+    //---------------------------------------------
+
+    //---------------------------------------------
+    // PUBLIC, SHOW in unity inspector
+    //---------------------------------------------
+
+    //---------------------------------------------
+    // PRIVATE [SF], SHOW in unity inspector
+    //---------------------------------------------
     [SerializeField]
     bool speedUpTime;
 
@@ -16,6 +32,9 @@ public class SpeedUpTime : MonoBehaviour
     //public List<GameObject> mobArray = new List<GameObject>();
 
     // Start is called before the first frame update
+    //---------------------------------------------
+    // FUNCTIONS
+    //---------------------------------------------  
     void Start()
     {
 

@@ -87,6 +87,7 @@ public class TestManageMob : MonoBehaviour
 
             if (timer <= 0)
             {
+                //choosing a random amount of animal to spawn
                 spawnNumber = Random.Range(1, spawnzone.Length);
                 for(int i = 0; i < spawnNumber; i++)
                 {

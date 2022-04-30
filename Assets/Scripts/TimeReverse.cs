@@ -4,14 +4,30 @@ using UnityEngine;
 
 public class TimeReverse : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //---------------------------------------------
+    // PUBLIC [S.NS], NOT in unity inspector         
+    //---------------------------------------------
+
+    //---------------------------------------------
+    // PRIVATE, NOT in unity inspector
+    //---------------------------------------------
+
+    //---------------------------------------------
+    // PUBLIC, SHOW in unity inspector
+    //---------------------------------------------
+
+    //---------------------------------------------
+    // PRIVATE [SF], SHOW in unity inspector
+    //---------------------------------------------
 
     [SerializeField]
     bool reverseTime;
 
     [SerializeField]
     float reverseSpeed;
-
+    //---------------------------------------------
+    // FUNCTIONS
+    //---------------------------------------------  
     void Start()
     {
         

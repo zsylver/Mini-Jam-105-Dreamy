@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //---------------------------------------------
+    // PUBLIC [S.NS], NOT in unity inspector         
+    //---------------------------------------------
+
+    //---------------------------------------------
+    // PRIVATE, NOT in unity inspector
+    //---------------------------------------------
+
+    //---------------------------------------------
+    // PUBLIC, SHOW in unity inspector
+    //---------------------------------------------
+    public float GameTimePassed;
+
+    //---------------------------------------------
+    // PRIVATE [SF], SHOW in unity inspector
+    //---------------------------------------------
     [SerializeField]
     TMPro.TMP_Text playercounter;
 
@@ -26,8 +41,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     public GameObject manager;
 
-    public float GameTimePassed;
-
+    //---------------------------------------------
+    // FUNCTIONS
+    //---------------------------------------------  
     void Start()
     {
         playercount = 0;

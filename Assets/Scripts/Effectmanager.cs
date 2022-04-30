@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class Effectmanager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //---------------------------------------------
+    // PUBLIC [S.NS], NOT in unity inspector         
+    //---------------------------------------------
 
+    //---------------------------------------------
+    // PRIVATE, NOT in unity inspector
+    //---------------------------------------------
+
+    //---------------------------------------------
+    // PUBLIC, SHOW in unity inspector
+    //---------------------------------------------
     int randomIndex = 0;
 
     int spawnZoneIndex = 0;
 
     float timer;
-
+    //---------------------------------------------
+    // PRIVATE [SF], SHOW in unity inspector
+    //---------------------------------------------
     [SerializeField]
-    float spawntime = 5;
+    float spawntime = 3;
 
     [SerializeField]
     GameObject Player;
@@ -23,6 +34,10 @@ public class Effectmanager : MonoBehaviour
 
     [SerializeField]
     GameObject[] spawnzone;
+
+    //---------------------------------------------
+    // FUNCTIONS
+    //---------------------------------------------   
     void Start()
     {
         timer = spawntime;
@@ -35,15 +50,21 @@ public class Effectmanager : MonoBehaviour
 
         if (timer <= 0)
         {
+            //spawn game time effects
             if (Player.GetComponent<Player>().GameTimePassed > 0)
             {
+
             }
-            spawnZoneIndex = Random.Range(0, spawnzone.Length);
-            randomIndex = Random.Range(0, effectprefab.Length);
-            GameObject mob;
-            mob = Instantiate(effectprefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
-            mob.transform.Translate(-mob.GetComponent<SpriteRenderer>().bounds.size.x/2 , 0, 0);
-            timer = Random.Range(spawntime, spawntime + 3);
+            else//spawn non game time effects
+            {
+                spawnZoneIndex = Random.Range(0, spawnzone.Length);
+                randomIndex = Random.Range(0, effectprefab.Length);
+                GameObject mob;
+                mob = Instantiate(effectprefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
+                mob.transform.Translate(-mob.GetComponent<SpriteRenderer>().bounds.size.x / 2, 0, 0);
+                timer = Random.Range(spawntime - 2, spawntime + 2);
+            }
+
         }
     }
 }
