@@ -102,6 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countzone: {fileID: 0}
   currentState: {fileID: 0}
+  ID: 0
+  end: 0
   counted: 0
   baseGiveUpChance: 20
   maxThinkingDelay: 3

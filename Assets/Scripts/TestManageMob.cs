@@ -11,6 +11,8 @@ public class TestManageMob : MonoBehaviour
 // PRIVATE, NOT in unity inspector
 //---------------------------------------------
     float timer;
+    int count;
+
     bool ended = false;
     int randomIndex = 0,
         minSizeOfMobPrefabArray = 0,
@@ -34,8 +36,7 @@ public class TestManageMob : MonoBehaviour
     //---------------------------------------------
     [SerializeField]
     TMPro.TMP_Text counter;
-    int count;
-
+    
     [SerializeField]
     int baseSpawnZoneCheckerChance = 25;
 

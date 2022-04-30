@@ -51,15 +51,18 @@ public class Player : MonoBehaviour
     {
         playercount = 0;
         GameDuration = Random.Range(GameDurationMin, GameDurationMax);
+
+
         GameTimePassed = GameDuration;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameTimePassed > 0)
-        {
-            playercounter.text = playercount.ToString();
+        playercounter.text = playercount.ToString();
+
+        if (GameTimePassed > 0)
+        {            
             GameTimePassed -= Time.deltaTime;
         }
         else if(manager.GetComponent<TestManageMob>().NumberOfMobsInPlay == 0)

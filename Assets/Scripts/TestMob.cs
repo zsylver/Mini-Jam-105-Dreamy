@@ -22,16 +22,9 @@ public class TestMob : MonoBehaviour
     [System.NonSerialized]
     public float initialSpeed;
 
-    [System.NonSerialized]
-    public float fallMultiplier = 2.5f;
-
-    [System.NonSerialized]
-    public float lowJumpMultiplier = 2.0f;
-    //---------------------------------------------
-    // PRIVATE, NOT in unity inspector
-    //---------------------------------------------
-    
-
+//---------------------------------------------
+// PRIVATE, NOT in unity inspector
+//---------------------------------------------
     Sprite obj;
     float baseSpeed = 6;
 
@@ -61,9 +54,11 @@ public class TestMob : MonoBehaviour
 
     float floorY = -5.916605f;
 
-    Rigidbody2D rb;
-    Vector3 tempPos;
+    float movingDuration, moveDurationMin = 1, moveDurationMax = 4;
+    bool isMoving = true;
 
+    float stoningDuration, stoneDurationMin = 1, stoneDurationMax = 4;
+    bool isStoning = false;
 
 //---------------------------------------------
 // PUBLIC, SHOW in unity inspector
@@ -73,9 +68,9 @@ public class TestMob : MonoBehaviour
     public int ID;
     public bool end = false;
 
-    //---------------------------------------------
-    // PRIVATE [SF], SHOW in unity inspector
-    //---------------------------------------------
+//---------------------------------------------
+// PRIVATE [SF], SHOW in unity inspector
+//---------------------------------------------
     [SerializeField]
     bool counted;
 
@@ -100,15 +95,9 @@ public class TestMob : MonoBehaviour
     [SerializeField]
     float maxJumpDuration;
 
-    //---------------------------------------------
-    // FUNCTIONS
-    //---------------------------------------------
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();    
-    }
-
-
+//---------------------------------------------
+// FUNCTIONS
+//---------------------------------------------
     void Start()
     {
         obj = GetComponent<Sprite>();
@@ -137,22 +126,96 @@ public class TestMob : MonoBehaviour
             isNoobSheep = true;
             baseThinkingDelay = Random.Range(baseThinkingDelay, maxThinkingDelay + 1);
             baseThinkingDuration = Random.Range(baseThinkingDuration, maxThinkingDuration + 1);
-        }               
+        }
+
+        movingDuration = Random.Range(moveDurationMin, moveDurationMax);    // 1 to 3 seconds
+        stoningDuration = Random.Range(stoneDurationMin, stoneDurationMax); // 1 to 3 seconds
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GameManager.Instance.isPause())
+        if (end) // wander AI
+        {
+            if (fiftyPercentRNG)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
+                if (isMoving == true) {
+                    movingDuration -= Time.fixedDeltaTime;
+                    transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
+                    if (movingDuration <= 0)
+                    {
+                        isMoving = false;
+                        isStoning = true;
+                        stoningDuration = Random.Range(stoneDurationMin, stoneDurationMax); // 1 to 3 seconds
+                    }
+                }                
+                else if (isStoning == true) {
+                    stoningDuration -= Time.fixedDeltaTime;
+                    if (stoningDuration <= 0)
+                    {
+                        isStoning = false;
+                        isMoving = true;
+                        movingDuration = Random.Range(moveDurationMin, moveDurationMax);
+
+                        fiftyPercentRNGNum = Random.Range(1, 2 + 1);
+                        if (fiftyPercentRNGNum == 1)
+                            fiftyPercentRNG = false;
+                        else if (fiftyPercentRNGNum == 2)
+                        {
+                            fiftyPercentRNG = true;
+                        }
+                    }                
+                }
+            }
+            else
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
+                if (isMoving == true)
+                {
+                    movingDuration -= Time.fixedDeltaTime;
+                    transform.Translate(-moveSpeed * Time.fixedDeltaTime, 0, 0);
+                    if (movingDuration <= 0)
+                    {
+                        isMoving = false;
+                        isStoning = true;
+                        stoningDuration = Random.Range(2, stoneDurationMax); // 1 to 3 seconds
+                    }
+                }
+                else if (isStoning == true)
+                {
+                    stoningDuration -= Time.fixedDeltaTime;
+                    if (stoningDuration <= 0)
+                    {
+                        isStoning = false;
+                        isMoving = true;
+                        movingDuration = Random.Range(2, moveDurationMax);
+
+                        fiftyPercentRNGNum = Random.Range(1, 2 + 1);
+                        if (fiftyPercentRNGNum == 1)
+                            fiftyPercentRNG = false;
+                        else if (fiftyPercentRNGNum == 2)
+                        {
+                            fiftyPercentRNG = true;
+                        }
+                    }
+                }
+            }
+        }
+        else
         {
             this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            // if is a balloon animal
             if (this.gameObject.transform.Find("balloon") != null && this.gameObject.transform.Find("balloon").gameObject.transform.CompareTag("flying"))
             {
                 transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
             }
-            else
+            else // if not balloon animal
             {
-                if (isNoobSheep)
+                if (isNoobSheep) // give up animal
                 {
                     if (baseThinkingDelay >= 0)
                     {
@@ -167,10 +230,11 @@ public class TestMob : MonoBehaviour
                         transform.Translate(-moveSpeed * Time.fixedDeltaTime, 0, 0);
                     }
                 }
-                else
+                else // jumping animal
                 {
                     if (jumpDelay >= 0 && jumpFinish == true)
                     {
+                        transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
                         jumpDelay -= Time.fixedDeltaTime;
                         if (jumpDelay <= 0)
                         {
@@ -178,24 +242,15 @@ public class TestMob : MonoBehaviour
                             jumpDuration = initialJumpDuration;
                         }
                     }
-
-                    if (jumpDelay <= 0 && (jumpDuration >= 0 || jumpFinish == false))
+                    else if (jumpDelay <= 0 && (jumpDuration >= 0 || jumpFinish == false))
                     {
-                        // if this 50% rng is false, animal constantly bounces aft jumping
-                        // else, it got delay between jumps
-                        if (fiftyPercentRNG == true)
+                        jumpDuration -= Time.fixedDeltaTime;
+                        if (jumpDuration <= 0 && this.gameObject.transform.position.y <= floorY)
                         {
-                            jumpDuration -= Time.fixedDeltaTime;
-                            transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
-
-                            if (jumpDuration <= 0 && this.gameObject.transform.position.y <= floorY)
-                            {
-                                jumpFinish = true;
-                                jumpDelay = initialJumpDelay;
-                            }
+                            jumpFinish = true;
+                            jumpDelay = initialJumpDelay;
                         }
-                        else
-                            transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
+                        transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
                     }
                     else
                     {
@@ -203,12 +258,7 @@ public class TestMob : MonoBehaviour
                     }
                 }
             }
-        }
-        else
-        {
-            this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-        }
-
+        }        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
