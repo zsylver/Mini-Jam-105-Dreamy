@@ -26,6 +26,12 @@ public class TimeReverse : MonoBehaviour
     [SerializeField]
     float reverseSpeed;
 
+    [SerializeField]
+    int minDuration;
+
+    [SerializeField]
+    int maxDuration;
+
     private float timerReverseTime;
     private float durationReverseTime;
 
@@ -58,7 +64,7 @@ public class TimeReverse : MonoBehaviour
 
             if (bufferReverseTime)
             {
-                durationReverseTime = Random.Range(3, 7);
+                durationReverseTime = Random.Range(minDuration, maxDuration + 1);
                 bufferReverseTime = false;
             }
 

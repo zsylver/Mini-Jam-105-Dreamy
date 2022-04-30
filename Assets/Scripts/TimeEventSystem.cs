@@ -5,6 +5,13 @@ using UnityEngine;
 public class TimeEventSystem : MonoBehaviour
 {
     private float timer, bufferEvent;
+
+    [SerializeField]
+    int MinBufferRange;
+
+    [SerializeField]
+    int MaxBufferRange;
+
     private bool pickBuffer;
     private int chosenEvent;
 
@@ -21,7 +28,7 @@ public class TimeEventSystem : MonoBehaviour
         timer += Time.fixedDeltaTime;
         if (pickBuffer) 
         {
-            bufferEvent = Random.Range(4, 9);
+            bufferEvent = Random.Range(MinBufferRange, MaxBufferRange + 1);
             pickBuffer = false;
         }
             

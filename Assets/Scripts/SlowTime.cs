@@ -29,6 +29,12 @@ public class SlowTime : MonoBehaviour
     [SerializeField]
     float lowestSpeed;
 
+    [SerializeField]
+    int minDuration;
+
+    [SerializeField]
+    int maxDuration;
+
     private float timerSlowTime;
     private float durationSlowTime;
 
@@ -62,7 +68,7 @@ public class SlowTime : MonoBehaviour
 
             if (bufferSlowTime)
             {
-                durationSlowTime = Random.Range(3, 7);
+                durationSlowTime = Random.Range(minDuration, maxDuration + 1);
                 bufferSlowTime = false;
             }
 

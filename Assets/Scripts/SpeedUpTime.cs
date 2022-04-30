@@ -29,6 +29,12 @@ public class SpeedUpTime : MonoBehaviour
     [SerializeField]
     float highestSpeed;
 
+    [SerializeField]
+    int minDuration;
+
+    [SerializeField]
+    int maxDuration;
+
     private float timerSpeedTime;
     private float durationSpeedTime;
 
@@ -64,7 +70,7 @@ public class SpeedUpTime : MonoBehaviour
 
             if (bufferSpeedTime)
             {
-                durationSpeedTime = Random.Range(3, 7);
+                durationSpeedTime = Random.Range(minDuration, maxDuration + 1);
                 bufferSpeedTime = false;
             }
 

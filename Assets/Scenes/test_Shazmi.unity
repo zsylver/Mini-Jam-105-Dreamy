@@ -927,6 +927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adfcd156d90d26448fbb2436859da3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameTimePassed: 0
   playercounter: {fileID: 2139083440}
   endtext: {fileID: 1911581412}
   playercount: 0
@@ -934,7 +935,6 @@ MonoBehaviour:
   GameDurationMin: 15
   GameDurationMax: 60
   manager: {fileID: 1958181664}
-  GameTimePassed: 0
 --- !u!1 &1148189563
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,7 +2026,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reverseTime: 0
-  reverseSpeed: 13
+  reverseSpeed: 100
+  minDuration: 5
+  maxDuration: 7
 --- !u!114 &1958181668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2041,7 +2043,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedUpTime: 0
   speedAddition: 10
-  highestSpeed: 50
+  highestSpeed: 40
+  minDuration: 3
+  maxDuration: 7
 --- !u!114 &1958181669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2055,8 +2059,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowTime: 0
-  speedReduction: 12
-  lowestSpeed: 0.5
+  speedReduction: 15
+  lowestSpeed: 0.01
+  minDuration: 5
+  maxDuration: 10
 --- !u!114 &1958181670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2069,6 +2075,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8303d63859e4248baccf71243e2abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinBufferRange: 11
+  MaxBufferRange: 15
 --- !u!1 &2123007335
 GameObject:
   m_ObjectHideFlags: 0
