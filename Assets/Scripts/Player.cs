@@ -57,19 +57,15 @@ public class Player : MonoBehaviour
     {
         if(GameTimePassed > 0)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Mouse0))
+/*            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Mouse0))
             {
-                playercount++;
-                playercounter.text = playercount.ToString();
+                AddPlayerCount();
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Mouse1))
             {
-                if (playercount > 0)
-                {
-                    playercount--;
-                }
-                playercounter.text = playercount.ToString();
-            }
+                DecPlayeCount();
+            }*/
+            playercounter.text = playercount.ToString();
             GameTimePassed -= Time.deltaTime;
         }
         else if(manager.GetComponent<TestManageMob>().NumberOfMobsInPlay == 0)
@@ -77,5 +73,17 @@ public class Player : MonoBehaviour
             endtext.alpha = 255;
         }
 
+    }
+
+    public void AddPlayerCount()
+    {
+        playercount++;
+    }
+    public void DecPlayeCount()
+    {
+        if (playercount > 0)
+        {
+            playercount--;
+        }
     }
 }
