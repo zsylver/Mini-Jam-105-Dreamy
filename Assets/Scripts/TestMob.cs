@@ -30,6 +30,8 @@ public class TestMob : MonoBehaviour
     //---------------------------------------------
     // PRIVATE, NOT in unity inspector
     //---------------------------------------------
+    
+
     Sprite obj;
     float baseSpeed = 6;
 
@@ -68,10 +70,12 @@ public class TestMob : MonoBehaviour
 //---------------------------------------------
     public GameObject countzone;
     public SheepState currentState;
-    
-//---------------------------------------------
-// PRIVATE [SF], SHOW in unity inspector
-//---------------------------------------------
+    public int ID;
+    public bool end = false;
+
+    //---------------------------------------------
+    // PRIVATE [SF], SHOW in unity inspector
+    //---------------------------------------------
     [SerializeField]
     bool counted;
 
@@ -200,26 +204,34 @@ public class TestMob : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Kill on collide w/ killzone
-        for(int i = 0; i < killzone.Length; i++)
+        if (!end)
         {
-            if (collision.gameObject == killzone[i])
+            //Kill on collide w/ killzone
+            for (int i = 0; i < killzone.Length; i++)
             {
-                manager.NumberOfMobsInPlay--;
-                Destroy(gameObject);
+                if (collision.gameObject == killzone[i])
+                {
+                    manager.NumberOfMobsInPlay--;
+                    Destroy(gameObject);
+                }
+            }
+
+            //count
+            if (!counted && collision.gameObject == countzone)
+            {
+                manager.endMob.Add(ID);
+                counted = true;
+                if (this.gameObject.CompareTag("Sheep"))
+                {
+                    manager.AddCount();
+                }
             }
         }
 
-        //count
-        if (!counted && collision.gameObject == countzone && this.gameObject.CompareTag("Sheep"))
-        {
-            manager.AddCount();
-            counted = true;
-        }
-        else if (counted && collision.gameObject == countzone && this.gameObject.CompareTag("Sheep"))
+/*        else if (counted && collision.gameObject == countzone && this.gameObject.CompareTag("Sheep"))
         {
             manager.DecCount();
             counted = false;
-        }
+        }*/
     }
 }

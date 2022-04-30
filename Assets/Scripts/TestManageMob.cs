@@ -28,10 +28,10 @@ public class TestManageMob : MonoBehaviour
 //---------------------------------------------
     public int NumberOfMobsInPlay = 0;    
     public List<GameObject> mobArray = new List<GameObject>();
-
-//---------------------------------------------
-// PRIVATE [SF], SHOW in unity inspector
-//---------------------------------------------
+    public List<int> endMob = new List<int>();
+    //---------------------------------------------
+    // PRIVATE [SF], SHOW in unity inspector
+    //---------------------------------------------
     [SerializeField]
     TMPro.TMP_Text counter;
     int count;
@@ -50,6 +50,10 @@ public class TestManageMob : MonoBehaviour
 
     [SerializeField]
     GameObject[] flyingMobPrefab;
+
+
+    [SerializeField]
+    GameObject endspawn;
 
     [SerializeField]
     GameObject[] spawnzone;
@@ -107,12 +111,14 @@ public class TestManageMob : MonoBehaviour
                         // choosing a random animal to spawn
                         randomIndex = Random.Range(minSizeOfMobPrefabArray, maxSizeOfMobPrefabArray);
                         mob = Instantiate(mobprefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
+                        mob.GetComponent<TestMob>().ID = randomIndex;
                     }
                     else // flying spawnZone         
                     {
                         // choosing a random flying animal to spawn
                         randomIndex = Random.Range(minSizeOfFlyingMobPrefabArray, maxSizeOfFlyingMobPrefabArray);
                         mob = Instantiate(flyingMobPrefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
+                        mob.GetComponent<TestMob>().ID = mobprefab.Length + randomIndex + 1;
                     }
 
                     mob.GetComponent<TestMob>().killzone = killzone;
@@ -126,9 +132,37 @@ public class TestManageMob : MonoBehaviour
                 timer = Random.Range(spawntime, spawntime + 3);
             }
         }
+        else if(NumberOfMobsInPlay == 0)
+        {
+            countzone.GetComponent<Collider2D>().isTrigger = false;
+            for (int i = 0; i < endMob.Count; i++)
+            {
+                GameObject mob;
+                if (endMob[i] > mobprefab.Length)
+                {
+                    mob = Instantiate(flyingMobPrefab[endMob[i] - mobprefab.Length -1], endspawn.transform.position, Quaternion.identity);
+                    mob.GetComponent<TestMob>().manager = this;
+                    mob.GetComponent<TestMob>().end = true;
+                }
+                else
+                {
+                    mob = Instantiate(mobprefab[endMob[i]], endspawn.transform.position, Quaternion.identity);
+                    mob.GetComponent<TestMob>().manager = this;
+                    mob.GetComponent<TestMob>().end = true;
+                }
+                endMob.RemoveAt(i);
+            }
+
+        }
         counter.text = count.ToString();
     }
-
+    public void DelKillZone()
+    {
+        for (int i = 0; i < killzone.Length; ++i)
+        {
+            Destroy(killzone[i]);
+        }
+    }
     public void AddCount()
     {
         count++;

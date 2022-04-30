@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
     float GameDurationMax = 60;
 
     [SerializeField]
+    Animator animator;
+
+    [SerializeField]
     public GameObject manager;
 
     //---------------------------------------------
@@ -49,7 +52,6 @@ public class Player : MonoBehaviour
         playercount = 0;
         GameDuration = Random.Range(GameDurationMin, GameDurationMax);
         GameTimePassed = GameDuration;
-
     }
 
     // Update is called once per frame
@@ -57,20 +59,13 @@ public class Player : MonoBehaviour
     {
         if(GameTimePassed > 0)
         {
-/*            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                AddPlayerCount();
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                DecPlayeCount();
-            }*/
             playercounter.text = playercount.ToString();
             GameTimePassed -= Time.deltaTime;
         }
         else if(manager.GetComponent<TestManageMob>().NumberOfMobsInPlay == 0)
         {
-            endtext.alpha = 255;
+            manager.GetComponent<TestManageMob>().DelKillZone();
+            animator.SetBool("isEnd", true);
         }
 
     }
