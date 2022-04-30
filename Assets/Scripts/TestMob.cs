@@ -172,34 +172,27 @@ public class TestMob : MonoBehaviour
                     }
                 }
 
-                if (jumpDelay <= 0 && jumpDuration >= 0 && jumpFinish == false)
+                if (jumpDelay <= 0 && (jumpDuration >= 0 || jumpFinish == false))
                 {
                     // if this 50% rng is false, animal constantly bounces aft jumping
                     // else, it got delay between jumps
                     if (fiftyPercentRNG == true)
                     {
                         jumpDuration -= Time.fixedDeltaTime;
-                        if (jumpDuration <= 0)
+                        transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
+
+                        if (jumpDuration <= 0 && this.gameObject.transform.position.y <= floorY)
                         {
                             jumpFinish = true;
                             jumpDelay = initialJumpDelay;
                         }
                     }
-
-                    transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
+                    else 
+                        transform.Translate(moveSpeed * Time.fixedDeltaTime, jumpHeight * Time.fixedDeltaTime, 0);
                 }
                 else
-                {
-                    if (this.gameObject.transform.position.y > floorY)
-                    {
-                        transform.Translate(moveSpeed * Time.fixedDeltaTime, -jumpHeight * Time.fixedDeltaTime, 0);
-                        
-                        // fixing Y coord
-                        if (this.gameObject.transform.position.y <= floorY) {
-                            tempPos.Set(this.gameObject.transform.position.x, floorY, this.gameObject.transform.position.z);
-                            this.gameObject.transform.SetPositionAndRotation(tempPos, Quaternion.identity);
-                        }
-                    }
+                {                    
+                    transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);                    
                 }
             }
         }
