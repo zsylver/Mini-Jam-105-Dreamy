@@ -705,15 +705,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fd11c0fdad9e7f42a10a68cc5381bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SCShader: {fileID: 4800000, guid: 4765e42ea04507f4f90e34c5fc42b2e0, type: 3}
-  Twist: 1
-  Speed: 1
-  Color: {r: 0.16, g: 0.57, b: 0.19, a: 1}
+  Twist: 0.109
+  Speed: -0.63
+  Color: {r: 1, g: 1, b: 1, a: 1}
   PosX: 0.5
   PosY: 0.5
 --- !u!114 &519420036
@@ -723,13 +723,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0971779da499d914c9a205948f8ee602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SCShader: {fileID: 4800000, guid: 14156ee2cd4dade4a8da9c29407b9203, type: 3}
-  Fade: 1
+  Fade: 0.12
 --- !u!114 &519420037
 MonoBehaviour:
   m_ObjectHideFlags: 0
