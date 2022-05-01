@@ -96,6 +96,15 @@ public class TestManageMob : MonoBehaviour
     [SerializeField]
     AudioSource countSFX4;
 
+    [SerializeField]
+    GameObject pausebtn;
+
+    [SerializeField]
+    GameObject Panel;
+
+    [SerializeField]
+    GameObject pause2btn;
+
     //---------------------------------------------
     // FUNCTIONS
     //---------------------------------------------      
@@ -170,6 +179,7 @@ public class TestManageMob : MonoBehaviour
             {
                 if (!ended)
                 {
+                    pausebtn.SetActive(false);
                     mobArray.Clear();
                     ended = true;
                     timer = revealtime;
@@ -294,17 +304,17 @@ public class TestManageMob : MonoBehaviour
         {
             correctSFXSrc.PlayOneShot(correctSFXSrc.clip);
             Player.transform.Find("tick").gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("tick").gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("tick").gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("tick").gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("tick").gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("tick").gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("tick").gameObject.SetActive(true);
             
         }
@@ -312,18 +322,21 @@ public class TestManageMob : MonoBehaviour
         {
             wrongSFXSrc.PlayOneShot(wrongSFXSrc.clip);
             Player.transform.Find("cross").gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("cross").gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("cross").gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("cross").gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("cross").gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("cross").gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.1f); ;
+            yield return new WaitForSeconds(0.1f);
             Player.transform.Find("cross").gameObject.SetActive(true);            
         }
+        yield return new WaitForSeconds(1f);
+        Panel.SetActive(true);
+        pause2btn.SetActive(false);
     }
 }
