@@ -57,9 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Nunito-Regular
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 1319679632
   material: {fileID: -6416229808581044433}
-  materialHashCode: 0
+  materialHashCode: -473777104
   m_Version: 1.1.0
   m_SourceFontFileGUID: 7579e61ecac61e242b085cb79a786c6c
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 7579e61ecac61e242b085cb79a786c6c, type: 3}
