@@ -21,19 +21,22 @@ public class TimeEventSystem : MonoBehaviour
     private bool pickBuffer;
     private int chosenEvent;
 
+    private int eventCount, eventCountMax;
+
     // Start is called before the first frame update
     void Start()
     {
         timer = 0.0f;
         pickBuffer = true;
+        eventCountMax = Random.Range(1, 5); // 1 to 4
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Player.GetComponent<Player>().GameTimePassed > 0)
+        if (Player.GetComponent<Player>().GameTimePassed > 0 && eventCount < eventCountMax)
         {
-            
+
             if (GetComponent<TimeReverse>().reverseTime == false && GetComponent<SpeedUpTime>().speedUpTime == false)
             {
                 timer += Time.fixedDeltaTime;
@@ -52,6 +55,10 @@ public class TimeEventSystem : MonoBehaviour
                 pickBuffer = true;
             }
         }
+
+        if (eventCount > eventCountMax || (GetComponent<TimeReverse>().reverseTime == false && GetComponent<SpeedUpTime>().speedUpTime == false))
+            fastforward.SetActive(false);
+
     }
 
     private void eventPicker() 
@@ -63,11 +70,13 @@ public class TimeEventSystem : MonoBehaviour
                 GetComponent<TimeReverse>().reverseTime = true;
                 fastforward.SetActive(true);
                 fastforward.GetComponent<SpriteRenderer>().flipX = true;
+                ++eventCount;
                 break;
             case 2:
                 GetComponent<SpeedUpTime>().speedUpTime = true;
                 fastforward.GetComponent<SpriteRenderer>().flipX = false;
                 fastforward.SetActive(true);
+                ++eventCount;
                 break;
             default:
                 break;

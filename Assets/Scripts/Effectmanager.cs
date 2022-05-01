@@ -55,7 +55,7 @@ public class Effectmanager : MonoBehaviour
         {
             timer -= Time.deltaTime;
 
-            if (timer <= 0 && GetComponent<TimeReverse>().reverseTime == true)
+            if (timer <= 0/*&& GetComponent<TimeReverse>().reverseTime == true*/)
             {
                 spawnZoneIndex = Random.Range(0, spawnzone.Length);
                 randomIndex = Random.Range(0, effectprefab.Length);

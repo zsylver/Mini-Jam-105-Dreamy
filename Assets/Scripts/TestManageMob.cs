@@ -100,11 +100,16 @@ public class TestManageMob : MonoBehaviour
     GameObject pausebtn;
 
     [SerializeField]
+    GameObject pauseBtnShadow;
+
+    [SerializeField]
     GameObject Panel;
 
     [SerializeField]
     GameObject pause2btn;
 
+    [SerializeField]
+    GameObject pause2BtnShadow;
     //---------------------------------------------
     // FUNCTIONS
     //---------------------------------------------      
@@ -180,6 +185,7 @@ public class TestManageMob : MonoBehaviour
                 if (!ended)
                 {
                     pausebtn.SetActive(false);
+                    pauseBtnShadow.SetActive(false);
                     mobArray.Clear();
                     ended = true;
                     timer = revealtime;
@@ -338,5 +344,7 @@ public class TestManageMob : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Panel.SetActive(true);
         pause2btn.SetActive(false);
+        pause2BtnShadow.SetActive(false);
+        
     }
 }
