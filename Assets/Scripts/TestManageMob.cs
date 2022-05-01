@@ -221,16 +221,20 @@ public class TestManageMob : MonoBehaviour
     {
         sheepcountstart = false;
         mobArray[endcountdown - 1].gameObject.transform.Find("count").gameObject.GetComponent<TMPro.TMP_Text>().text = endcountdown.ToString();
+        Vector3 ogscale = mobArray[endcountdown - 1].gameObject.transform.localScale;
 
         for (float alpha = 0f; alpha <= 1; alpha += 0.1f)
         {
             mobArray[endcountdown - 1].gameObject.transform.Find("count").gameObject.GetComponent<TMPro.TMP_Text>().alpha = alpha;
+            mobArray[endcountdown - 1].gameObject.transform.localScale = Vector3.Lerp(ogscale, ogscale * 1.5f, alpha);
+            mobArray[endcountdown - 1].gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
             yield return null;
         }
         yield return new WaitForSeconds(1f);
         for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
         {
             mobArray[endcountdown - 1].gameObject.transform.Find("count").gameObject.GetComponent<TMPro.TMP_Text>().alpha = alpha;
+            mobArray[endcountdown - 1].gameObject.transform.localScale = Vector3.Lerp(ogscale, ogscale * 1.5f, alpha);
             yield return null;
         }
         mobArray[endcountdown - 1].gameObject.transform.Find("count").gameObject.GetComponent<TMPro.TMP_Text>().alpha = 0;
@@ -256,5 +260,45 @@ public class TestManageMob : MonoBehaviour
             yield return null;
         }
         Player.transform.Find("playercounter").gameObject.GetComponent<TMPro.TMP_Text>().alpha = 1;
+        if(Player.GetComponent<Player>().GetPlayerCount() == count)
+        {
+            Player.transform.Find("tick").gameObject.SetActive(true);
+            yield return null;
+            Player.transform.Find("tick").gameObject.SetActive(false);
+            yield return null;
+            Player.transform.Find("tick").gameObject.SetActive(true);
+            yield return null;
+            Player.transform.Find("tick").gameObject.SetActive(false);
+            yield return null;
+            Player.transform.Find("tick").gameObject.SetActive(true);
+            yield return null;
+            Player.transform.Find("tick").gameObject.SetActive(false);
+            yield return null;
+            Player.transform.Find("tick").gameObject.SetActive(true);
+            yield return null;
+            Player.transform.Find("tick").gameObject.SetActive(false);
+            yield return null;
+            Player.transform.Find("tick").gameObject.SetActive(true);
+        }
+        else
+        {
+            Player.transform.Find("cross").gameObject.SetActive(true);
+            yield return null;
+            Player.transform.Find("cross").gameObject.SetActive(false);
+            yield return null;
+            Player.transform.Find("cross").gameObject.SetActive(true);
+            yield return null;
+            Player.transform.Find("cross").gameObject.SetActive(false);
+            yield return null;
+            Player.transform.Find("cross").gameObject.SetActive(true);
+            yield return null;
+            Player.transform.Find("cross").gameObject.SetActive(false);
+            yield return null;
+            Player.transform.Find("cross").gameObject.SetActive(true);
+            yield return null;
+            Player.transform.Find("cross").gameObject.SetActive(false);
+            yield return null;
+            Player.transform.Find("cross").gameObject.SetActive(true);
+        }
     }
 }
