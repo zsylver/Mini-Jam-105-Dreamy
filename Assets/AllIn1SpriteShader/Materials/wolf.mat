@@ -12,7 +12,6 @@ Material:
   m_ValidKeywords:
   - DOODLE_ON
   - OUTBASEPIXELPERF_ON
-  - OUTBASE_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

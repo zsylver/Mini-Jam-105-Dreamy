@@ -247,7 +247,23 @@ public class TestMob : MonoBehaviour
             // if is a balloon animal
             if (this.gameObject.transform.Find("balloon") != null && this.gameObject.transform.Find("balloon").gameObject.transform.CompareTag("flying"))
             {
-                transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
+                if (isNoobSheep) // give up animal
+                {
+                    if (baseThinkingDelay >= 0)
+                    {
+                        baseThinkingDelay -= Time.fixedDeltaTime;
+                        transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
+                    }
+                    else if (baseThinkingDuration >= 0)
+                        baseThinkingDuration -= Time.fixedDeltaTime;
+                    else
+                    {
+                        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                        transform.Translate(-moveSpeed * Time.fixedDeltaTime, 0, 0);
+                    }
+                }
+                else
+                    transform.Translate(moveSpeed * Time.fixedDeltaTime, 0, 0);
             }
             else // if not balloon animal
             {

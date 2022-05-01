@@ -35,9 +35,10 @@ public class TestManageMob : MonoBehaviour
     public int NumberOfMobsInPlay = 0;    
     public List<GameObject> mobArray = new List<GameObject>();
     public List<int> endMob = new List<int>();
-    //---------------------------------------------
-    // PRIVATE [SF], SHOW in unity inspector
-    //---------------------------------------------
+
+//---------------------------------------------
+// PRIVATE [SF], SHOW in unity inspector
+//---------------------------------------------
     [SerializeField]
     TMPro.TMP_Text counter;
     
@@ -76,10 +77,28 @@ public class TestManageMob : MonoBehaviour
 
     [SerializeField]
     GameObject countzone;
-    
-//---------------------------------------------
-// FUNCTIONS
-//---------------------------------------------      
+
+    [SerializeField]
+    AudioSource correctSFXSrc;
+
+    [SerializeField]
+    AudioSource wrongSFXSrc;
+
+    [SerializeField]
+    AudioSource countSFX1;
+
+    [SerializeField]
+    AudioSource countSFX2;
+
+    [SerializeField]
+    AudioSource countSFX3;
+
+    [SerializeField]
+    AudioSource countSFX4;
+
+    //---------------------------------------------
+    // FUNCTIONS
+    //---------------------------------------------      
     void Start()
     {
         timer = spawntime;
@@ -230,6 +249,17 @@ public class TestManageMob : MonoBehaviour
             mobArray[endcountdown - 1].gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
             yield return null;
         }
+
+        int soundRNG = Random.Range(1, 5);
+        if (soundRNG == 1)
+            countSFX1.PlayOneShot(countSFX1.clip);
+        if (soundRNG == 2)
+            countSFX2.PlayOneShot(countSFX2.clip);
+        if (soundRNG == 3)
+            countSFX3.PlayOneShot(countSFX3.clip);
+        if (soundRNG == 4)
+            countSFX4.PlayOneShot(countSFX4.clip);
+
         yield return new WaitForSeconds(1f);
         for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
         {
@@ -262,6 +292,7 @@ public class TestManageMob : MonoBehaviour
         Player.transform.Find("playercounter").gameObject.GetComponent<TMPro.TMP_Text>().alpha = 1;
         if(Player.GetComponent<Player>().GetPlayerCount() == count)
         {
+            correctSFXSrc.PlayOneShot(correctSFXSrc.clip);
             Player.transform.Find("tick").gameObject.SetActive(true);
             yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("tick").gameObject.SetActive(false);
@@ -275,9 +306,11 @@ public class TestManageMob : MonoBehaviour
             Player.transform.Find("tick").gameObject.SetActive(false);
             yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("tick").gameObject.SetActive(true);
+            
         }
         else
         {
+            wrongSFXSrc.PlayOneShot(wrongSFXSrc.clip);
             Player.transform.Find("cross").gameObject.SetActive(true);
             yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("cross").gameObject.SetActive(false);
@@ -290,7 +323,7 @@ public class TestManageMob : MonoBehaviour
             yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("cross").gameObject.SetActive(false);
             yield return new WaitForSeconds(0.1f); ;
-            Player.transform.Find("cross").gameObject.SetActive(true);
+            Player.transform.Find("cross").gameObject.SetActive(true);            
         }
     }
 }
