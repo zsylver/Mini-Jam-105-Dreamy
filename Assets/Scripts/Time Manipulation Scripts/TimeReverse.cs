@@ -82,7 +82,7 @@ public class TimeReverse : MonoBehaviour
             Rewind();
             for (int g = 0; g < GetComponent<Effectmanager>().effectArray.Count; ++g)
             {
-                GetComponent<Effectmanager>().effectArray[g].GetComponent<TestCloud>().panspeed = -6f;
+                GetComponent<Effectmanager>().effectArray[g].GetComponent<TestCloud>().panspeed = -3;
             }
         }
 

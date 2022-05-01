@@ -33,9 +33,10 @@ public class TimeEventSystem : MonoBehaviour
     {
         if (Player.GetComponent<Player>().GameTimePassed > 0)
         {
-            timer += Time.fixedDeltaTime;
+            
             if (GetComponent<TimeReverse>().reverseTime == false && GetComponent<SpeedUpTime>().speedUpTime == false)
             {
+                timer += Time.fixedDeltaTime;
                 fastforward.SetActive(false);
             }
             if (pickBuffer)
