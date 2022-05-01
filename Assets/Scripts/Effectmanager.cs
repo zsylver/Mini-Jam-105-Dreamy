@@ -20,6 +20,8 @@ public class Effectmanager : MonoBehaviour
     int spawnZoneIndex = 0;
 
     float timer;
+
+    public List<GameObject> effectArray = new List<GameObject>();
     //---------------------------------------------
     // PRIVATE [SF], SHOW in unity inspector
     //---------------------------------------------
@@ -63,6 +65,8 @@ public class Effectmanager : MonoBehaviour
                 timer = Random.Range(spawntime, spawntime + 3);
 
                 mob.GetComponent<TestCloud>().killzone = killzone;
+                mob.GetComponent<TestCloud>().manager = this;
+                effectArray.Add(mob);
             }
         }
     }

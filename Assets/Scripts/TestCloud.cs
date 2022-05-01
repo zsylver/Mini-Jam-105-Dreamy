@@ -5,10 +5,13 @@ using UnityEngine;
 public class TestCloud : MonoBehaviour
 {
     [SerializeField]
-    float panspeed = 1;
+    public float panspeed = 6;
 
     [System.NonSerialized]
     public GameObject[] killzone;
+
+    [System.NonSerialized]
+    public Effectmanager manager;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +35,9 @@ public class TestCloud : MonoBehaviour
         {
             if (collision.gameObject == killzone[i])
             {
+                manager.effectArray.Remove(this.gameObject);
                 Destroy(gameObject);
+
             }
         }
     }

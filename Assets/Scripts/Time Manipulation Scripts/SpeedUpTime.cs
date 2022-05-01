@@ -81,6 +81,10 @@ public class SpeedUpTime : MonoBehaviour
                     GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().moveSpeed += speedAddition * Time.fixedDeltaTime;
                 }
             }
+            for (int g = 0; g < GetComponent<Effectmanager>().effectArray.Count; ++g)
+            {
+                GetComponent<Effectmanager>().effectArray[g].GetComponent<TestCloud>().panspeed = 9;
+            }
         }
         else
         {
@@ -90,6 +94,10 @@ public class SpeedUpTime : MonoBehaviour
                 {
                     GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().moveSpeed += -speedAddition * Time.fixedDeltaTime;
                 }
+            }
+            for (int g = 0; g < GetComponent<Effectmanager>().effectArray.Count; ++g)
+            {
+                GetComponent<Effectmanager>().effectArray[g].GetComponent<TestCloud>().panspeed = 6;
             }
         }
 

@@ -78,9 +78,23 @@ public class TimeReverse : MonoBehaviour
         /*if (forwardTime)
             Forward();*/
         if (reverseTime)
+        {
             Rewind();
+            for (int g = 0; g < GetComponent<Effectmanager>().effectArray.Count; ++g)
+            {
+                GetComponent<Effectmanager>().effectArray[g].GetComponent<TestCloud>().panspeed = -6f;
+            }
+        }
+
         else
+        {
             Record();
+            for (int g = 0; g < GetComponent<Effectmanager>().effectArray.Count; ++g)
+            {
+                GetComponent<Effectmanager>().effectArray[g].GetComponent<TestCloud>().panspeed = 6;
+            }
+        }
+            
     }
 
     void Record() 
