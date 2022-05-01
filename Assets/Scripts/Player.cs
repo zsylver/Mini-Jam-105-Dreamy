@@ -38,8 +38,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     float GameDurationMax = 60;
 
-    [SerializeField]
-    Animator animator;
 
     [SerializeField]
     public GameObject manager;
@@ -59,17 +57,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playercounter.text = playercount.ToString();
+        
 
         if (GameTimePassed > 0)
-        {            
+        {
             GameTimePassed -= Time.deltaTime;
         }
         else if(manager.GetComponent<TestManageMob>().NumberOfMobsInPlay == 0)
         {
             manager.GetComponent<TestManageMob>().DelKillZone();
-            animator.enabled = true;
-            animator.SetBool("isEnd", true);
+        }
+        if (manager.GetComponent<TestManageMob>().NumberOfMobsInPlay != 0)
+        {
+            playercounter.text = playercount.ToString();
         }
 
     }
@@ -77,6 +77,11 @@ public class Player : MonoBehaviour
     public void AddPlayerCount()
     {
         playercount++;
+    }
+
+    public int GetPlayerCount()
+    {
+        return playercount;
     }
     public void DecPlayeCount()
     {

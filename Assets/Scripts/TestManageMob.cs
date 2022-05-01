@@ -12,8 +12,12 @@ public class TestManageMob : MonoBehaviour
 //---------------------------------------------
     float timer;
     int count;
+    int endcountdown;
 
     bool ended = false;
+    bool showresult = true;
+    bool sheepcountstart = true;
+
     int randomIndex = 0,
         minSizeOfMobPrefabArray = 0,
         maxSizeOfMobPrefabArray = 0,
@@ -55,9 +59,14 @@ public class TestManageMob : MonoBehaviour
     [SerializeField]
     GameObject[] flyingMobPrefab;
 
+    [SerializeField]
+    Animator animator;
 
     [SerializeField]
     GameObject endspawn;
+
+    [SerializeField]
+    GameObject endspawnground;
 
     [SerializeField]
     GameObject[] spawnzone;
@@ -145,35 +154,43 @@ public class TestManageMob : MonoBehaviour
                     mobArray.Clear();
                     ended = true;
                     timer = revealtime;
-                }
-                countzone.GetComponent<Collider2D>().isTrigger = false;
-                for (int i = 0; i < endMob.Count; i++)
-                {
-                    GameObject mob;
-                    if (endMob[i] > mobprefab.Length)
+                    countzone.GetComponent<Collider2D>().isTrigger = false;
+                    for (int i = 0; i < endMob.Count; i++)
                     {
-                        mob = Instantiate(flyingMobPrefab[endMob[i] - mobprefab.Length - 1], endspawn.transform.position, Quaternion.identity);
-                        mob.GetComponent<TestMob>().manager = this;
-                        mob.GetComponent<TestMob>().end = true;
+                        GameObject mob;
+                        if (endMob[i] > mobprefab.Length)
+                        {
+                            mob = Instantiate(flyingMobPrefab[endMob[i] - mobprefab.Length - 1], endspawn.transform.position, Quaternion.identity);
+                            mob.GetComponent<TestMob>().manager = this;
+                            mob.GetComponent<TestMob>().end = true;
+                        }
+                        else
+                        {
+                            mob = Instantiate(mobprefab[endMob[i]], endspawnground.transform.position, Quaternion.identity);
+                            mob.GetComponent<TestMob>().manager = this;
+                            mob.GetComponent<TestMob>().end = true;
+                        }
+                        if (mob.CompareTag("Sheep"))
+                        {
+                            mobArray.Add(mob);
+                        }
+                        //endMob.RemoveAt(i);
                     }
-                    else
-                    {
-                        mob = Instantiate(mobprefab[endMob[i]], endspawn.transform.position, Quaternion.identity);
-                        mob.GetComponent<TestMob>().manager = this;
-                        mob.GetComponent<TestMob>().end = true;
-                    }
-                    if (mob.CompareTag("Sheep"))
-                    {
-                        mobArray.Add(mob);
-                    }
-                    endMob.RemoveAt(i);
+                    endcountdown = 1;
+                    animator.enabled = true;
+                    animator.SetBool("isEnd", true);
                 }
                 timer -= Time.deltaTime;
                 if (timer <= 0)
                 {
-                    if(mobArray.Count > 0)
+                    if (endcountdown <= count && sheepcountstart)
                     {
-                        //mobArray[mobArray.Count].transform;
+                        StartCoroutine(countSheep());
+                    }
+                    else if(endcountdown >= count && showresult)
+                    {
+                        StartCoroutine(showResult());
+                        showresult = false;
                     }
                     timer = revealtime;
                 }
@@ -199,5 +216,45 @@ public class TestManageMob : MonoBehaviour
         {
             count--;
         }
+    }
+    IEnumerator countSheep()
+    {
+        sheepcountstart = false;
+        mobArray[endcountdown - 1].gameObject.transform.Find("count").gameObject.GetComponent<TMPro.TMP_Text>().text = endcountdown.ToString();
+
+        for (float alpha = 0f; alpha <= 1; alpha += 0.1f)
+        {
+            mobArray[endcountdown - 1].gameObject.transform.Find("count").gameObject.GetComponent<TMPro.TMP_Text>().alpha = alpha;
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
+        {
+            mobArray[endcountdown - 1].gameObject.transform.Find("count").gameObject.GetComponent<TMPro.TMP_Text>().alpha = alpha;
+            yield return null;
+        }
+        mobArray[endcountdown - 1].gameObject.transform.Find("count").gameObject.GetComponent<TMPro.TMP_Text>().alpha = 0;
+        endcountdown++;
+        sheepcountstart = true;
+    }
+    IEnumerator showResult()
+    {
+        for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
+        {
+            Player.transform.Find("playercounter").gameObject.GetComponent<TMPro.TMP_Text>().alpha = alpha;
+            yield return null;
+        }
+        Player.transform.Find("playercounter").gameObject.GetComponent<TMPro.TMP_Text>().alpha = 0;
+
+        Player.transform.Find("playercounter").gameObject.GetComponent<TMPro.TMP_Text>().text =
+                            Player.GetComponent<Player>().GetPlayerCount().ToString() + "/" + count.ToString();
+        Player.transform.Find("playercounter").gameObject.GetComponent<TMPro.TMP_Text>().fontSize = 15;
+
+        for (float alpha = 0f; alpha <= 1; alpha += 0.1f)
+        {
+            Player.transform.Find("playercounter").gameObject.GetComponent<TMPro.TMP_Text>().alpha = alpha;
+            yield return null;
+        }
+        Player.transform.Find("playercounter").gameObject.GetComponent<TMPro.TMP_Text>().alpha = 1;
     }
 }

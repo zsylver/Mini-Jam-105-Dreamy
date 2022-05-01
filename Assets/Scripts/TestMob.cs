@@ -284,6 +284,7 @@ public class TestMob : MonoBehaviour
                 if (collision.gameObject == killzone[i])
                 {
                     manager.NumberOfMobsInPlay--;
+                    manager.mobArray.Remove(this.gameObject);
                     Destroy(gameObject);
                 }
             }
