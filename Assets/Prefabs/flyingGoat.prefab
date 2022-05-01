@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 4372141513814021311}
   - component: {fileID: 8327689409250368066}
   - component: {fileID: 1543930564776915157}
+  - component: {fileID: 6674905062750508778}
   m_Layer: 0
   m_Name: halo
   m_TagString: Untagged
@@ -352,3 +353,15 @@ MonoBehaviour:
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
+--- !u!114 &6674905062750508778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6335803618273758126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74b1d74388748bb498f8f50861bea1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

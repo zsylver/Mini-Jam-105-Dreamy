@@ -153,7 +153,18 @@ public class TestMob : MonoBehaviour
         {
             if (fiftyPercentRNG)
             {
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                Vector3 theScale = transform.localScale;
+                if (theScale.x < 0)
+                {
+                    theScale.x *= -1;
+                    transform.localScale = theScale;
+                    if (this.CompareTag("Sheep"))
+                    {
+                        Vector3 txtScale = this.gameObject.transform.Find("count").transform.localScale;
+                        txtScale.x *= -1;
+                        this.gameObject.transform.Find("count").transform.localScale = txtScale;
+                    }
+                }
 
                 if (isMoving == true) {
                     movingDuration -= Time.fixedDeltaTime;
@@ -185,7 +196,18 @@ public class TestMob : MonoBehaviour
             }
             else
             {
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                Vector3 theScale = transform.localScale;
+                if (theScale.x > 0)
+                {
+                    theScale.x *= -1;
+                    transform.localScale = theScale;
+                    if (this.CompareTag("Sheep"))
+                    {
+                        Vector3 txtScale = this.gameObject.transform.Find("count").transform.localScale;
+                        txtScale.x *= -1;
+                        this.gameObject.transform.Find("count").transform.localScale = txtScale;
+                    }
+                }
 
                 if (isMoving == true)
                 {
@@ -240,7 +262,18 @@ public class TestMob : MonoBehaviour
                         baseThinkingDuration -= Time.fixedDeltaTime;
                     else
                     {
-                        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                        Vector3 theScale = transform.localScale;
+                        if (theScale.x > 0)
+                        {
+                            theScale.x *= -1;
+                            transform.localScale = theScale;
+                            if (this.CompareTag("Sheep")){
+                                Vector3 txtScale = this.gameObject.transform.Find("count").transform.localScale;
+                                txtScale.x *= -1;
+                                this.gameObject.transform.Find("count").transform.localScale = txtScale;
+                            }
+                        }
+
                         transform.Translate(-moveSpeed * Time.fixedDeltaTime, 0, 0);
                     }
                 }

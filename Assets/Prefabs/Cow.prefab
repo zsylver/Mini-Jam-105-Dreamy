@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4fc755dce07a7ab4fb28c2765890b9db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 6743278533259695898}
   - component: {fileID: 5515575677931338185}
   - component: {fileID: 5480761124159587176}
+  - component: {fileID: 924541058467687609}
   m_Layer: 0
   m_Name: halo
   m_TagString: Untagged
@@ -192,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6842620471981636337}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.07, y: -1.45, z: 0}
+  m_LocalPosition: {x: 1.75, y: 0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -267,3 +268,15 @@ MonoBehaviour:
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
+--- !u!114 &924541058467687609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6842620471981636337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74b1d74388748bb498f8f50861bea1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
