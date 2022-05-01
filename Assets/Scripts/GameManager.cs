@@ -13,21 +13,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     bool gameNotPause = true;
+
+    [SerializeField]
+    GameObject root;
+
     void Awake()
     {
-        if (instance != null)
-            Destroy(gameObject);
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
+        instance = this;
 
-            int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
-            scenes = new string[sceneCount];
-            for (int i = 0; i < sceneCount; i++)
-            {
-                scenes[i] = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(i));
-            }
+        int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
+        scenes = new string[sceneCount];
+        for (int i = 0; i < sceneCount; i++)
+        {
+            scenes[i] = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(i));
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -45,6 +43,19 @@ public class GameManager : MonoBehaviour
             {
                 Button transitobj = transitobjname.transform.GetComponentInParent<Button>();
                 transitobj.onClick.AddListener(delegate { ChangeState(transitobjname.name); });
+            }
+
+            if(root)
+            {
+                root.SetActive(true);
+                transitobjname = GameObject.Find(scenes[i]);
+
+                if (transitobjname)
+                {
+                    Button transitobj = transitobjname.transform.GetComponentInParent<Button>();
+                    transitobj.onClick.AddListener(delegate { ChangeState(transitobjname.name); });
+                }
+                root.SetActive(false);
             }
         }
     }
