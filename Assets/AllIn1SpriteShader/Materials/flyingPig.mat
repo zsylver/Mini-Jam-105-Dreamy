@@ -7,9 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sheep
+  m_Name: flyingPig
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - SHAKEUV_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -125,9 +126,9 @@ Material:
     - _GradIsRadial: 0
     - _GrassManualAnim: 1
     - _GrassManualToggle: 0
-    - _GrassRadialBend: 0.41
-    - _GrassSpeed: 1.5
-    - _GrassWind: 7.4
+    - _GrassRadialBend: 0.1
+    - _GrassSpeed: 2
+    - _GrassWind: 20
     - _GreyscaleBlend: 1
     - _GreyscaleLuminosity: 0
     - _GreyscaleOutline: 0

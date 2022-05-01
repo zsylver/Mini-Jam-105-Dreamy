@@ -11,6 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
   m_ValidKeywords:
   - DOODLE_ON
+  - PINCH_ON
+  - SHAKEUV_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -132,7 +134,7 @@ Material:
     - _GreyscaleBlend: 1
     - _GreyscaleLuminosity: 0
     - _GreyscaleOutline: 0
-    - _HandDrawnAmount: 2.8
+    - _HandDrawnAmount: 0.2
     - _HandDrawnSpeed: 5
     - _HitEffectBlend: 1
     - _HitEffectGlow: 5
@@ -172,7 +174,7 @@ Material:
     - _OutlineWidth: 0.004
     - _OverlayBlend: 1
     - _OverlayGlow: 1
-    - _PinchUvAmount: 0.35
+    - _PinchUvAmount: 0
     - _PixelateSize: 32
     - _PosterizeGamma: 0.75
     - _PosterizeNumColors: 8
@@ -186,15 +188,15 @@ Material:
     - _ShadowX: 0.1
     - _ShadowY: -0.05
     - _ShakeUvSpeed: 2.5
-    - _ShakeUvX: 1.5
-    - _ShakeUvY: 1
+    - _ShakeUvX: 0
+    - _ShakeUvY: 0.05
     - _ShineGlow: 1
     - _ShineLocation: 0.5
     - _ShineRotate: 0
     - _ShineWidth: 0.1
     - _TextureScrollXSpeed: 1
     - _TextureScrollYSpeed: 0
-    - _TwistUvAmount: 1
+    - _TwistUvAmount: 0
     - _TwistUvPosX: 0.5
     - _TwistUvPosY: 0.5
     - _TwistUvRadius: 0.75

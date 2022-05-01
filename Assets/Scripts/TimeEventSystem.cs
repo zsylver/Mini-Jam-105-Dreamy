@@ -24,6 +24,9 @@ public class TimeEventSystem : MonoBehaviour
     [SerializeField]
     AudioSource reverseSfx;
 
+    [SerializeField]
+    GameObject panel;
+
     private bool fastFwdSfxIsPlaying, reverseSfxIsPlaying;
 
     private bool pickBuffer;
@@ -42,23 +45,8 @@ public class TimeEventSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.GetComponent<Player>().GameTimePassed > 0 && eventCount < eventCountMax)
+        if (Player.GetComponent<Player>().GameTimePassed > 0 && eventCount < eventCountMax && panel.activeSelf == false)
         {
-            //if (reverseSfxIsPlaying)
-            //{
-            //    if (GetComponent<TimeReverse>().reverseTime == true)
-            //    {
-            //        reverseSfx.Stop();
-            //    }
-            //}
-
-            //if (fastFwdSfxIsPlaying)
-            //{
-            //    if (GetComponent<SpeedUpTime>().speedUpTime == true)
-            //    {
-            //        fastFwdSfx.Stop();
-            //    }
-            //}
 
             if (GetComponent<TimeReverse>().reverseTime == false && GetComponent<SpeedUpTime>().speedUpTime == false)
             {
