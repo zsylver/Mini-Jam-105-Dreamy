@@ -274,7 +274,7 @@ public class TestManageMob : MonoBehaviour
         if (soundRNG == 3)
             countSFX3.PlayOneShot(countSFX3.clip);
         if (soundRNG == 4)
-            countSFX4.PlayOneShot(countSFX4.clip);
+            countSFX3.PlayOneShot(countSFX3.clip);
 
         yield return new WaitForSeconds(1f);
         for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)

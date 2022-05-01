@@ -18,6 +18,14 @@ public class TimeEventSystem : MonoBehaviour
     [SerializeField]
     GameObject fastforward;
 
+    [SerializeField]
+    AudioSource fastFwdSfx;
+
+    [SerializeField]
+    AudioSource reverseSfx;
+
+    private bool fastFwdSfxIsPlaying, reverseSfxIsPlaying;
+
     private bool pickBuffer;
     private int chosenEvent;
 
@@ -36,6 +44,21 @@ public class TimeEventSystem : MonoBehaviour
     {
         if (Player.GetComponent<Player>().GameTimePassed > 0 && eventCount < eventCountMax)
         {
+            //if (reverseSfxIsPlaying)
+            //{
+            //    if (GetComponent<TimeReverse>().reverseTime == true)
+            //    {
+            //        reverseSfx.Stop();
+            //    }
+            //}
+
+            //if (fastFwdSfxIsPlaying)
+            //{
+            //    if (GetComponent<SpeedUpTime>().speedUpTime == true)
+            //    {
+            //        fastFwdSfx.Stop();
+            //    }
+            //}
 
             if (GetComponent<TimeReverse>().reverseTime == false && GetComponent<SpeedUpTime>().speedUpTime == false)
             {
@@ -70,12 +93,16 @@ public class TimeEventSystem : MonoBehaviour
                 GetComponent<TimeReverse>().reverseTime = true;
                 fastforward.SetActive(true);
                 fastforward.GetComponent<SpriteRenderer>().flipX = true;
+                reverseSfx.PlayOneShot(reverseSfx.clip);
+                reverseSfxIsPlaying = true;
                 ++eventCount;
                 break;
             case 2:
                 GetComponent<SpeedUpTime>().speedUpTime = true;
                 fastforward.GetComponent<SpriteRenderer>().flipX = false;
                 fastforward.SetActive(true);
+                fastFwdSfx.PlayOneShot(fastFwdSfx.clip);
+                fastFwdSfxIsPlaying = true;
                 ++eventCount;
                 break;
             default:
