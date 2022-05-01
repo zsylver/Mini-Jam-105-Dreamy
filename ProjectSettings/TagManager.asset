@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sheep
   - flying
+  - Cloud
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Cloud
+  - ColliderWall
+  - Animals
   - 
   - 
   - 

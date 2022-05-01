@@ -541,6 +541,13 @@ MonoBehaviour:
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
+<<<<<<< Updated upstream
+--- !u!4 &59276922 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1896611748761898440, guid: c5eea2444b821874e8b9a4caae493032, type: 3}
+  m_PrefabInstance: {fileID: 2032863020}
+  m_PrefabAsset: {fileID: 0}
+=======
 --- !u!1 &65238077
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +606,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 104.07409}
   m_EdgeRadius: 0
+>>>>>>> Stashed changes
 --- !u!1 &119698919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,6 +1885,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   newSprite: {fileID: 21300000, guid: 93fbbf9563e239b43bde91357c8241e9, type: 3}
+<<<<<<< Updated upstream
 --- !u!1 &659769827
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,6 +2240,8 @@ Transform:
   m_Father: {fileID: 1759178964}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &675947353
 GameObject:
   m_ObjectHideFlags: 0

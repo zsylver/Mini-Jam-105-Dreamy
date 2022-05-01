@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 667576068077027846}
   - component: {fileID: 4767660528170880843}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: balloon
   m_TagString: flying
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2812420586039239006}
   - component: {fileID: 8868311063441617935}
   - component: {fileID: 2753936844659204903}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: flyingSheep
   m_TagString: Sheep
   m_Icon: {fileID: 0}
@@ -187,6 +187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countzone: {fileID: 0}
   currentState: {fileID: 0}
+  ID: 0
+  end: 0
   counted: 0
   baseGiveUpChance: 20
   maxThinkingDelay: 3

@@ -22,15 +22,28 @@ public class TestMob : MonoBehaviour
     [System.NonSerialized]
     public float initialSpeed;
 
-//---------------------------------------------
-// PRIVATE, NOT in unity inspector
-//---------------------------------------------
+    [System.NonSerialized]
+    public float jumpHeight;
+
+    [System.NonSerialized]
+    public float initialJumpHeight;
+
+    [System.NonSerialized]
+    public List<Vector3> reversePositions = new List<Vector3>();
+
+    [System.NonSerialized]
+    public List<Vector3> forwardPositions = new List<Vector3>();
+
+    //---------------------------------------------
+    // PRIVATE, NOT in unity inspector
+    //---------------------------------------------
+
+
     Sprite obj;
     float baseSpeed = 6;
 
     float baseJumpHeight = 15;
-    float jumpHeight;
-
+    
     float baseJumpDelay = 1;
     float jumpDelay;
     float initialJumpDelay;
@@ -107,6 +120,7 @@ public class TestMob : MonoBehaviour
         initialSpeed = moveSpeed;
 
         jumpHeight = Random.Range(baseJumpHeight, maxJumpHeight + 1);
+        initialJumpHeight = jumpHeight;
 
         jumpDelay = Random.Range(baseJumpDelay, maxJumpDelay + 1);
         initialJumpDelay = jumpDelay;

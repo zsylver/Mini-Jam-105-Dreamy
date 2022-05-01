@@ -36,6 +36,9 @@ public class TimeReverse : MonoBehaviour
     private float durationReverseTime;
 
     private bool bufferReverseTime;
+    //private bool forwardTime;
+
+    private float gravity;
 
     //---------------------------------------------
     // FUNCTIONS
@@ -67,31 +70,60 @@ public class TimeReverse : MonoBehaviour
                 durationReverseTime = Random.Range(minDuration, maxDuration + 1);
                 bufferReverseTime = false;
             }
-
-            for (int i = 0; i < GetComponent<TestManageMob>().mobArray.Count; ++i)
-            {
-                if (GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().moveSpeed > -GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().initialSpeed)
-                {
-                    GetComponent<TestManageMob>().mobArray[i].GetComponent<TestMob>().moveSpeed += -reverseSpeed * Time.fixedDeltaTime;
-                }
-            }
-        }
-        else
-        {
-            for (int g = 0; g < GetComponent<TestManageMob>().mobArray.Count; ++g)
-            {
-                if (GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().moveSpeed < GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().initialSpeed)
-                {
-                    GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().moveSpeed += reverseSpeed * Time.fixedDeltaTime;
-                }
-            }
-        }
-
-        if (timerReverseTime > durationReverseTime)
-        {
-            reverseTime = false;
-            timerReverseTime = 0.0f;
-            bufferReverseTime = true;
         }
     }
+
+    void FixedUpdate()
+    {
+        /*if (forwardTime)
+            Forward();*/
+        if (reverseTime)
+            Rewind();
+        else
+            Record();
+    }
+
+    void Record() 
+    {
+        for (int g = 0; g < GetComponent<TestManageMob>().mobArray.Count; ++g) 
+        {
+            GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().reversePositions.Insert(0, GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().transform.position);
+        }
+    }
+
+    void Rewind()
+    {
+        for (int g = 0; g < GetComponent<TestManageMob>().mobArray.Count; ++g)
+        {
+            if (GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().reversePositions.Count > 0) 
+            {
+                GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().transform.position = GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().reversePositions[0];
+                //GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().forwardPositions.Insert(0, GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().reversePositions[0]);
+                GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().reversePositions.RemoveAt(0);
+            }
+
+            if (timerReverseTime > durationReverseTime)
+            {
+                reverseTime = false;
+                //forwardTime = true;
+                timerReverseTime = 0.0f;
+                bufferReverseTime = true;
+            }
+        }
+    }
+
+    /*void Forward()
+    {
+        for (int g = 0; g < GetComponent<TestManageMob>().mobArray.Count; ++g)
+        {
+            if (GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().forwardPositions.Count > 0)
+            {
+                GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().transform.position = GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().forwardPositions[0];
+                GetComponent<TestManageMob>().mobArray[g].GetComponent<TestMob>().forwardPositions.RemoveAt(0);
+            }
+        }
+
+        if (GetComponent<TestManageMob>().mobArray[GetComponent<TestManageMob>().mobArray.Count - 1].GetComponent<TestMob>().forwardPositions.Count <= 0)
+            forwardTime = false;
+    }*/
 }
