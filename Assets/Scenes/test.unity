@@ -7680,50 +7680,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1698155735}
     m_Modifications:
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1588834822}
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 519420038}
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 1462718691}
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 1878939290}
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
-      value: 
-      objectReference: {fileID: 14143332}
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddPlayerCount
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: TriggerShake
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: Play
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: randomPitch
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: PlayOneShot
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403429189152694230, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 14143332}
     - target: {fileID: 6388772739191111861, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
       propertyPath: m_Name
       value: counter-buttons
@@ -7817,50 +7773,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 14143332}
     - target: {fileID: 6388772740580012960, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 14143332}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1588834822}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 6474793533125786871, guid: 94a07d02ffd80a54f9109be23d4e8460, type: 3}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 1462718691}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 1878939290}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
-      value: 
-      objectReference: {fileID: 14143332}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DecPlayeCount
-      objectReference: {fileID: 0}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: TriggerShake
-      objectReference: {fileID: 0}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: Play
-      objectReference: {fileID: 0}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: randomPitch
-      objectReference: {fileID: 0}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: PlayOneShot
-      objectReference: {fileID: 0}
-    - target: {fileID: 8725301358353120917, guid: e1f5b31f8ac61764b9ba802c7d201a6a, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 14143332}
