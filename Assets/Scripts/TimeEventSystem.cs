@@ -12,6 +12,12 @@ public class TimeEventSystem : MonoBehaviour
     [SerializeField]
     int MaxBufferRange;
 
+    [SerializeField]
+    GameObject Player;
+
+    [SerializeField]
+    GameObject fastforward;
+
     private bool pickBuffer;
     private int chosenEvent;
 
@@ -25,34 +31,42 @@ public class TimeEventSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.fixedDeltaTime;
-        if (pickBuffer) 
+        if (Player.GetComponent<Player>().GameTimePassed > 0)
         {
-            bufferEvent = Random.Range(MinBufferRange, MaxBufferRange + 1);
-            pickBuffer = false;
-        }
-            
-        if (timer > bufferEvent) 
-        {
-            eventPicker();
-            timer = 0.0f;
-            pickBuffer = true;
+            timer += Time.fixedDeltaTime;
+            if (GetComponent<TimeReverse>().reverseTime == false && GetComponent<SpeedUpTime>().speedUpTime == false)
+            {
+                fastforward.SetActive(false);
+            }
+            if (pickBuffer)
+            {
+                bufferEvent = Random.Range(MinBufferRange, MaxBufferRange + 1);
+                pickBuffer = false;
+            }
+
+            if (timer > bufferEvent)
+            {
+                eventPicker();
+                timer = 0.0f;
+                pickBuffer = true;
+            }
         }
     }
 
     private void eventPicker() 
     {
-        chosenEvent = Random.Range(1, 4);
+        chosenEvent = Random.Range(1, 3);
         switch (chosenEvent) 
         {
             case 1:
                 GetComponent<TimeReverse>().reverseTime = true;
+                fastforward.SetActive(true);
+                fastforward.GetComponent<SpriteRenderer>().flipX = true;
                 break;
             case 2:
-                GetComponent<SlowTime>().slowTime = true;
-                break;
-            case 3:
                 GetComponent<SpeedUpTime>().speedUpTime = true;
+                fastforward.GetComponent<SpriteRenderer>().flipX = false;
+                fastforward.SetActive(true);
                 break;
             default:
                 break;
