@@ -263,41 +263,33 @@ public class TestManageMob : MonoBehaviour
         if(Player.GetComponent<Player>().GetPlayerCount() == count)
         {
             Player.transform.Find("tick").gameObject.SetActive(true);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("tick").gameObject.SetActive(false);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("tick").gameObject.SetActive(true);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("tick").gameObject.SetActive(false);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("tick").gameObject.SetActive(true);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("tick").gameObject.SetActive(false);
-            yield return null;
-            Player.transform.Find("tick").gameObject.SetActive(true);
-            yield return null;
-            Player.transform.Find("tick").gameObject.SetActive(false);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("tick").gameObject.SetActive(true);
         }
         else
         {
             Player.transform.Find("cross").gameObject.SetActive(true);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("cross").gameObject.SetActive(false);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("cross").gameObject.SetActive(true);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("cross").gameObject.SetActive(false);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("cross").gameObject.SetActive(true);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("cross").gameObject.SetActive(false);
-            yield return null;
-            Player.transform.Find("cross").gameObject.SetActive(true);
-            yield return null;
-            Player.transform.Find("cross").gameObject.SetActive(false);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); ;
             Player.transform.Find("cross").gameObject.SetActive(true);
         }
     }
