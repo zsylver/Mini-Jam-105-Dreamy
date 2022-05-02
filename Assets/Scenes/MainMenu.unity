@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Count crossing sheeps
+  m_text: 'Count all crossing sheep
 
     by clicking these buttons'
   m_isRightToLeft: 0
