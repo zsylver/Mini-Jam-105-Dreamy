@@ -29,6 +29,8 @@ public class TestManageMob : MonoBehaviour
     int spawnZoneChecker = 0;
     int spawnZoneMinChance = 0, spawnZoneMaxChance = 100;
     int spawnNumber = 0;
+
+    bool is20Percent = false, is50Percent = false, is40Percent = false;
 //---------------------------------------------
 // PUBLIC, SHOW in unity inspector
 //---------------------------------------------
@@ -126,7 +128,20 @@ public class TestManageMob : MonoBehaviour
         for (int i = 0; i < flyingMobPrefab.Length; ++i)
         {
             ++maxSizeOfFlyingMobPrefabArray;
-        }        
+        }
+
+        int rng20 = Random.Range(1, 6);
+        if (rng20 == 1)
+            is20Percent = true;
+
+        int rng50 = Random.Range(1, 5);
+        if (rng50 == 1 || rng50 == 2)
+            is50Percent = true;
+
+        int rng40 = Random.Range(1, 11);
+        if (rng40 <= 4)
+            is40Percent = true;
+        
     }
 
     void Update()
@@ -157,14 +172,64 @@ public class TestManageMob : MonoBehaviour
                         if (spawnZoneIndex == 0) // floor spawnZone
                         {
                             // choosing a random animal to spawn
-                            randomIndex = Random.Range(minSizeOfMobPrefabArray, maxSizeOfMobPrefabArray);
+                            if (is50Percent) // sheeps clothing only
+                            {
+                                int whichSheep = Random.Range(1, 4);
+                                if (whichSheep == 1)
+                                    randomIndex = 0;
+                                else if (whichSheep == 2)
+                                    randomIndex = 1;
+                                else if (whichSheep == 3)
+                                    randomIndex = 5;
+                            }
+                            else
+                            {
+                                int rng40_2 = Random.Range(1, 11);
+                                bool is40Percent_2 = false;
+
+                                if (rng40_2 <= 4)
+                                    is40Percent_2 = true;
+
+                                if (is40Percent_2)
+                                {
+                                    int rng50_2 = Random.Range(1, 3);
+                                    if (rng50_2 == 1)
+                                        randomIndex = 0;
+                                    else
+                                        randomIndex = 1;
+                                }
+                                else                                     
+                                    randomIndex = Random.Range(2, maxSizeOfMobPrefabArray);
+                            }
+
                             mob = Instantiate(mobprefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
                             mob.GetComponent<TestMob>().ID = randomIndex;
                         }
                         else // flying spawnZone         
                         {
                             // choosing a random flying animal to spawn
-                            randomIndex = Random.Range(minSizeOfFlyingMobPrefabArray, maxSizeOfFlyingMobPrefabArray);
+                            if (is50Percent) // sheeps clothing only
+                            {
+                                int whichSheep = Random.Range(1, 3);
+                                if (whichSheep == 1)
+                                    randomIndex = 0;
+                                else if (whichSheep == 2)
+                                    randomIndex = 4;
+                            }
+                            else
+                            {
+                                int rng40_2 = Random.Range(1, 11);
+                                bool is40Percent_2 = false;
+
+                                if (rng40_2 <= 4)
+                                    is40Percent_2 = true;
+
+                                if (is40Percent_2)
+                                    randomIndex = 0;
+                                else
+                                    randomIndex = Random.Range(1, maxSizeOfFlyingMobPrefabArray);
+                            }
+
                             mob = Instantiate(flyingMobPrefab[randomIndex], spawnzone[spawnZoneIndex].transform.position, Quaternion.identity);
                             mob.GetComponent<TestMob>().ID = mobprefab.Length + randomIndex + 1;
                         }
