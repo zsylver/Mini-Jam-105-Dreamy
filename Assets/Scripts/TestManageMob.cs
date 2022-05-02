@@ -137,7 +137,7 @@ public class TestManageMob : MonoBehaviour
             {
                 timer -= Time.deltaTime;
 
-                if (timer <= 0)
+                if (timer <= 0 && GetComponent<TimeReverse>().reverseTime == false && GetComponent<SpeedUpTime>().speedUpTime == false)
                 {
                     //choosing a random amount of animal to spawn
                     spawnNumber = Random.Range(1, spawnzone.Length);
@@ -266,15 +266,22 @@ public class TestManageMob : MonoBehaviour
             yield return null;
         }
 
-        int soundRNG = Random.Range(1, 5);
+        int soundRNG = Random.Range(1, 4);
         if (soundRNG == 1)
+        {
+            countSFX1.pitch = Random.Range(0.9f, 1.1f);
             countSFX1.PlayOneShot(countSFX1.clip);
+        }
         if (soundRNG == 2)
+        {
+            countSFX2.pitch = Random.Range(0.9f, 1.1f);
             countSFX2.PlayOneShot(countSFX2.clip);
+        }
         if (soundRNG == 3)
+        {
+            countSFX3.pitch = Random.Range(0.9f, 1.1f);
             countSFX3.PlayOneShot(countSFX3.clip);
-        if (soundRNG == 4)
-            countSFX3.PlayOneShot(countSFX3.clip);
+        }
 
         yield return new WaitForSeconds(1f);
         for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)

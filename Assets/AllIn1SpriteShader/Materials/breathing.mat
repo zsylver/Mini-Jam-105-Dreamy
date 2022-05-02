@@ -10,8 +10,6 @@ Material:
   m_Name: breathing
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
   m_ValidKeywords:
-  - DOODLE_ON
-  - PINCH_ON
   - SHAKEUV_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -188,8 +186,8 @@ Material:
     - _ShadowX: 0.1
     - _ShadowY: -0.05
     - _ShakeUvSpeed: 2.5
-    - _ShakeUvX: 0
-    - _ShakeUvY: 0.05
+    - _ShakeUvX: 0.05
+    - _ShakeUvY: 0.1
     - _ShineGlow: 1
     - _ShineLocation: 0.5
     - _ShineRotate: 0
